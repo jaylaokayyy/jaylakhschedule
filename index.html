@@ -508,4 +508,49 @@
 
             var cards = document.querySelectorAll('.checklist-card');
             cards.forEach(function(card) {
-                var startStr = card.getAttribute('
+                var startStr = card.getAttribute('data-start');
+                var endStr = card.getAttribute('data-end');
+                var badge = card.querySelector('.status-badge');
+
+                if (startStr && endStr && badge) {
+                    var startDate = new Date(startStr);
+                    var endDate = new Date(endStr);
+                    startDate.setHours(0,0,0,0);
+                    endDate.setHours(23,59,59,999);
+
+                    if (today < startDate) {
+                        badge.innerText = '未開始';
+                        badge.className = 'status-badge upcoming';
+                    } else if (today >= startDate && today <= endDate) {
+                        badge.innerText = '進行中';
+                        badge.className = 'status-badge active';
+                    } else {
+                        badge.innerText = '已結束';
+                        badge.className = 'status-badge ended';
+                    }
+                }
+            });
+        }
+
+        // 統計勾選數
+        function updateCount() {
+            var checkboxes = document.querySelectorAll('#checklistView input[type="checkbox"]');
+            var checked = 0;
+            checkboxes.forEach(function(cb) {
+                if (cb.checked) checked++;
+            });
+            document.getElementById('checkCount').innerText = checked + '/' + checkboxes.length;
+        }
+
+        function copySchedule() {
+            navigator.clipboard.writeText("2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅行程完成！");
+            alert("行程標題已複製到剪貼簿！");
+        }
+
+        // 頁面載入後自動更新日期狀態
+        window.onload = function() {
+            updateStatuses();
+        };
+    </script>
+</body>
+</html>
