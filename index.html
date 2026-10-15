@@ -155,7 +155,7 @@
             margin-top: 0;
         }
 
-        /* 應援打卡卡片樣式 */
+        /* 打卡卡片樣式 */
         .checklist-card {
             background: #fff;
             border-radius: 10px;
@@ -236,6 +236,28 @@
         .detail-row:last-child { margin-bottom: 0; }
         .detail-label { font-weight: bold; color: var(--purple-accent); }
 
+        /* 行李清單卡片 */
+        .luggage-item {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .luggage-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            accent-color: var(--purple-accent);
+            cursor: pointer;
+        }
+        .luggage-label {
+            font-size: 14px;
+            color: #333;
+        }
+
         /* 底部導覽頁籤 */
         .bottom-nav {
             position: fixed;
@@ -287,29 +309,31 @@
         </div>
     </div>
 
-    <!-- 行程頁面主區塊 -->
+    <!-- 1. 行程頁面區塊 -->
     <div class="container" id="scheduleView">
+        <!-- Day 1 -->
         <div id="day1-content" class="day-content">
             <div class="card">
-                <div class="time">下午 2:00</div>
-                <div class="title">抵達高雄 / 飯店 Check-in</div>
-                <div class="tags"><span class="tag">住宿</span></div>
-                <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">整理行李、確認阿米棒（應援棒）電池與應援小卡。</p>
-            </div>
-            <div class="card">
-                <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
-                <div class="time">下午 5:00 - 下午 6:30</div>
-                <div class="title">駁二藝術特區 / 應援咖啡廳打卡</div>
+                <div class="time">晚上 19:31 - 21:05</div>
+                <div class="title">搭乘高鐵前往高雄（157 車次）</div>
                 <div class="tags">
-                    <span class="tag spot">景點</span>
-                    <span class="tag purple">💜 ARMY 應援</span>
+                    <span class="tag">高鐵</span>
+                    <span class="tag purple">台北 ➔ 左營</span>
                 </div>
                 <div class="transit-box">
-                    🚆 <b>交通：</b>捷運橘線至「鹽埕埔站」或「西子灣站」步行即可抵達。
+                    🚄 <b>車次細節：</b>19:31 台北車站出發，21:05 抵達左營站。
                 </div>
+            </div>
+
+            <div class="card">
+                <div class="time">晚上 21:30</div>
+                <div class="title">飯店 Check-in / 休息預備</div>
+                <div class="tags"><span class="tag">住宿</span></div>
+                <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">抵達飯店放置行李、檢查演唱會應援物料與阿米棒電池，早點休息為接下來的行程充電！</p>
             </div>
         </div>
 
+        <!-- Day 2 -->
         <div id="day2-content" class="day-content hidden">
             <div class="card">
                 <div class="time">下午 3:00 - 晚上 10:00</div>
@@ -324,6 +348,7 @@
             </div>
         </div>
 
+        <!-- Day 3 -->
         <div id="day3-content" class="day-content hidden">
             <div class="card">
                 <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
@@ -339,6 +364,7 @@
             </div>
         </div>
 
+        <!-- Day 4 -->
         <div id="day4-content" class="day-content hidden">
             <div class="card">
                 <div class="time">下午 3:00 - 晚上 10:00</div>
@@ -353,6 +379,7 @@
             </div>
         </div>
 
+        <!-- Day 5 -->
         <div id="day5-content" class="day-content hidden">
             <div class="card">
                 <div class="time">下午 2:00</div>
@@ -363,10 +390,10 @@
         </div>
     </div>
 
-    <!-- 應援打卡清單頁區塊（分為大項目） -->
-    <div class="container hidden" id="checklistView">
+    <!-- 2. 活動頁面區塊（原本的打卡與咖啡廳清單） -->
+    <div class="container hidden" id="activitiesView">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <h3 style="margin: 0;">💜 應援打卡清單</h3>
+            <h3 style="margin: 0;">💜 應援活動打卡</h3>
             <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="checkCount">0/0</span>
         </div>
 
@@ -375,7 +402,7 @@
 
         <div class="checklist-card" data-start="2026-11-15" data-end="2026-11-22" onclick="toggleCard(this, event)">
             <div class="checklist-header">
-                <input type="checkbox" onclick="event.stopPropagation(); updateCount();">
+                <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
                 <div class="checklist-title-box">
                     <div class="checklist-title">田柾國 & JIMIN 公車廣告看板</div>
                     <div class="checklist-meta">
@@ -394,7 +421,7 @@
 
         <div class="checklist-card" data-start="2026-11-19" data-end="2026-11-20" onclick="toggleCard(this, event)">
             <div class="checklist-header">
-                <input type="checkbox" onclick="event.stopPropagation(); updateCount();">
+                <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
                 <div class="checklist-title-box">
                     <div class="checklist-title">LOVE QUEST 展覽</div>
                     <div class="checklist-meta">
@@ -411,13 +438,13 @@
             </div>
         </div>
 
-        <div class="checklist-card" data-start="2026-11-20" data-end="2026-11-20" onclick="toggleCard(this, event)">
+        <div class="checklist-card" data-start="2026-11-01" data-end="2026-11-30" onclick="toggleCard(this, event)">
             <div class="checklist-header">
-                <input type="checkbox" onclick="event.stopPropagation(); updateCount();">
+                <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
                 <div class="checklist-title-box">
                     <div class="checklist-title">LADOR 快閃店</div>
                     <div class="checklist-meta">
-                        <span>💄品牌快閃店</span>
+                        <span>💄 品牌快閃店</span>
                         <span class="status-badge">計算中...</span>
                     </div>
                 </div>
@@ -435,7 +462,7 @@
 
         <div class="checklist-card" data-start="2026-11-18" data-end="2026-11-21" onclick="toggleCard(this, event)">
             <div class="checklist-header">
-                <input type="checkbox" onclick="event.stopPropagation(); updateCount();">
+                <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
                 <div class="checklist-title-box">
                     <div class="checklist-title">Compose Coffee 應援旗店</div>
                     <div class="checklist-meta">
@@ -455,7 +482,7 @@
 
         <div class="checklist-card" data-start="2026-11-18" data-end="2026-11-22" onclick="toggleCard(this, event)">
             <div class="checklist-header">
-                <input type="checkbox" onclick="event.stopPropagation(); updateCount();">
+                <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
                 <div class="checklist-title-box">
                     <div class="checklist-title">ETHEREAL 高雄應援咖啡廳</div>
                     <div class="checklist-meta">
@@ -472,14 +499,46 @@
                 <div class="detail-row"><span class="detail-label">📝 備註事項：</span>需現場候位，低消為一杯飲品</div>
             </div>
         </div>
-
     </div>
 
-    <!-- 底部導覽頁籤 -->
+    <!-- 3. 行李清單頁面區塊（新增） -->
+    <div class="container hidden" id="luggageView">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h3 style="margin: 0;">🧳 行李準備清單</h3>
+            <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="luggageCount">0/0</span>
+        </div>
+
+        <div class="section-title">🎫 證件與重要憑證</div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">身分證 / 健保卡</span></div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">高鐵來回車票 / 預約 QR Code</span></div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">BTS 演唱會門票 / 票券兌換憑證</span></div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">飯店預約確認單</span></div>
+
+        <div class="section-title">💜 演唱會 / 應援裝備</div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">阿米棒（手燈）</span></div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">手燈備用電池（AAA 鹼性電池）</span></div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">小卡包 / 應援發放小禮物</span></div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">透明隨身包 / 演唱會提袋</span></div>
+
+        <div class="section-title">📱 3C 電腦與充電</div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">手機 + 手機充電線</span></div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">大容量行動電源（演唱會拍照整天必備）</span></div>
+
+        <div class="section-title">👗 個人衣物與保養</div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">替換衣物（5天4夜）</span></div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">個人保養品 / 美妝用品</span></div>
+        <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">隨身常用藥品 / 防蚊保健品</span></div>
+    </div>
+
+    <!-- 底部導覽頁籤（三大項目：活動、行李、行程） -->
     <div class="bottom-nav">
-        <button class="nav-tab-btn" id="tabChecklist" onclick="showTab('checklist')">
+        <button class="nav-tab-btn" id="tabActivities" onclick="showTab('activities')">
             <span style="font-size: 16px;">✅</span>
-            <span>清單</span>
+            <span>活動</span>
+        </button>
+        <button class="nav-tab-btn" id="tabLuggage" onclick="showTab('luggage')">
+            <span style="font-size: 16px;">🧳</span>
+            <span>行李</span>
         </button>
         <button class="nav-tab-btn active" id="tabSchedule" onclick="showTab('schedule')">
             <span style="font-size: 16px;">📅</span>
@@ -506,23 +565,36 @@
 
         function showTab(tab) {
             var scheduleView = document.getElementById('scheduleView');
-            var checklistView = document.getElementById('checklistView');
+            var activitiesView = document.getElementById('activitiesView');
+            var luggageView = document.getElementById('luggageView');
             var dayNav = document.getElementById('dayNav');
-            var tabChecklist = document.getElementById('tabChecklist');
+            
+            var tabActivities = document.getElementById('tabActivities');
+            var tabLuggage = document.getElementById('tabLuggage');
             var tabSchedule = document.getElementById('tabSchedule');
+
+            // 隱藏全部頁面區塊
+            scheduleView.classList.add('hidden');
+            activitiesView.classList.add('hidden');
+            luggageView.classList.add('hidden');
+            
+            // 重置 Tab 活性標籤
+            tabActivities.classList.remove('active');
+            tabLuggage.classList.remove('active');
+            tabSchedule.classList.remove('active');
 
             if (tab === 'schedule') {
                 scheduleView.classList.remove('hidden');
                 dayNav.classList.remove('hidden');
-                checklistView.classList.add('hidden');
                 tabSchedule.classList.add('active');
-                tabChecklist.classList.remove('active');
-            } else {
-                scheduleView.classList.add('hidden');
+            } else if (tab === 'activities') {
+                activitiesView.classList.remove('hidden');
                 dayNav.classList.add('hidden');
-                checklistView.classList.remove('hidden');
-                tabChecklist.classList.add('active');
-                tabSchedule.classList.remove('active');
+                tabActivities.classList.add('active');
+            } else if (tab === 'luggage') {
+                luggageView.classList.remove('hidden');
+                dayNav.classList.add('hidden');
+                tabLuggage.classList.add('active');
             }
         }
 
@@ -562,13 +634,22 @@
             }
         }
 
-        function updateCount() {
-            var checkboxes = document.querySelectorAll('#checklistView input[type="checkbox"]');
+        function updateActivityCount() {
+            var checkboxes = document.querySelectorAll('#activitiesView input[type="checkbox"]');
             var checked = 0;
             for (var i = 0; i < checkboxes.length; i++) {
                 if (checkboxes[i].checked) checked++;
             }
             document.getElementById('checkCount').innerText = checked + '/' + checkboxes.length;
+        }
+
+        function updateLuggageCount() {
+            var checkboxes = document.querySelectorAll('#luggageView input[type="checkbox"]');
+            var checked = 0;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) checked++;
+            }
+            document.getElementById('luggageCount').innerText = checked + '/' + checkboxes.length;
         }
 
         function copySchedule() {
@@ -578,7 +659,8 @@
 
         window.onload = function() {
             updateStatuses();
-            updateCount();
+            updateActivityCount();
+            updateLuggageCount();
         };
     </script>
 </body>
