@@ -295,7 +295,7 @@
 <body>
 
     <div class="header">
-        <h1 class="main-title">💜 2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅</h1>
+        <h1 class="main-title">💜 2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅 💜</h1>
         <div class="action-btns">
             <button class="btn" onclick="copySchedule()">複製行程</button>
             <button class="btn" onclick="window.print()">存成 PDF</button>
@@ -326,18 +326,10 @@
             </div>
 
             <div class="card">
-                <div class="time">晚上 21:30 - 22:30</div>
-                <div class="title">場館周邊場勘 / 拍照</div>
-                <div class="tags"><span class="tag">主行程</span></div>
-                <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">抵達後先至世運站寄物、再前往場館周邊勘查路線、拍照</p>
-            </div>
-        </div>
-
-            <div class="card">
-                <div class="time">晚上 23:00</div>
-                <div class="title">飯店 Check-in</div>
+                <div class="time">晚上 21:30</div>
+                <div class="title">飯店 Check-in / 休息預備</div>
                 <div class="tags"><span class="tag">住宿</span></div>
-                <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">抵達飯店前看要不要買東西吃</p>
+                <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">抵達飯店放置行李、檢查演唱會應援物料與阿米棒電池，早點休息為接下來的行程充電！</p>
             </div>
         </div>
 
@@ -361,13 +353,13 @@
             <div class="card">
                 <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
                 <div class="time">中午 12:00</div>
-                <div class="title">永心浮島 YONSHIN FUDOPIA</div>
+                <div class="title">碳佐麻里精品燒肉</div>
                 <div class="tags">
                     <span class="tag food">美食</span>
-                    <span class="tag">未預訂</span>
+                    <span class="tag">預訂午餐</span>
                 </div>
                 <div class="transit-box">
-                    💡 <b>必點推薦：</b>碳烤生章魚腳、台式青醬牡蠣炒麵
+                    💡 <b>美味推薦：</b>極上和牛燒肉、精品切盤、特色手作甜點與飲品。
                 </div>
             </div>
         </div>
@@ -398,14 +390,16 @@
         </div>
     </div>
 
-    <!-- 2. 活動頁面區塊（原本的打卡與咖啡廳清單） -->
+    <!-- 2. 活動頁面區塊 -->
     <div class="container hidden" id="activitiesView">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <h3 style="margin: 0;">💜 應援活動打卡</h3>
+            <h3 style="margin: 0;">💜 活動打卡清單</h3>
             <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="checkCount">0/0</span>
         </div>
 
-        <!-- 大項目一：應援打卡點 -->
+        <!-- 大項目一：應援活動打卡 -->
+        <div style="font-size: 18px; font-weight: bold; color: #333; margin: 15px 0 10px 0;">💜 應援活動打卡</div>
+
         <div class="section-title">📍 應援打卡點</div>
 
         <div class="checklist-card" data-start="2026-11-15" data-end="2026-11-22" onclick="toggleCard(this, event)">
@@ -465,7 +459,6 @@
             </div>
         </div>
 
-        <!-- 大項目二：應援咖啡廳 -->
         <div class="section-title">☕ 應援咖啡廳</div>
 
         <div class="checklist-card" data-start="2026-11-18" data-end="2026-11-21" onclick="toggleCard(this, event)">
@@ -507,9 +500,75 @@
                 <div class="detail-row"><span class="detail-label">📝 備註事項：</span>需現場候位，低消為一杯飲品</div>
             </div>
         </div>
+
+        <!-- 大項目二：其他清單打卡 -->
+        <div style="font-size: 18px; font-weight: bold; color: #333; margin: 30px 0 10px 0; border-top: 2px dashed #ccc; padding-top: 15px;">📌 其他清單打卡</div>
+
+        <div class="section-title">🎡 觀光景點</div>
+
+        <div class="checklist-card" data-start="2026-11-18" data-end="2026-11-22" onclick="toggleCard(this, event)">
+            <div class="checklist-header">
+                <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                <div class="checklist-title-box">
+                    <div class="checklist-title">駁二藝術特區 & 棧貳庫</div>
+                    <div class="checklist-meta">
+                        <span>🎡 觀光景點</span>
+                        <span class="status-badge">計算中...</span>
+                    </div>
+                </div>
+                <span class="arrow-icon">▼</span>
+            </div>
+            <div class="checklist-details">
+                <div class="detail-row"><span class="detail-label">📅 建議時間：</span>自由安排</div>
+                <div class="detail-row"><span class="detail-label">📍 景點地點：</span>高雄市鹽埕區大勇路 1 號</div>
+                <div class="detail-row"><span class="detail-label">📝 備註事項：</span>適合走走散步、逛文創小店與拍照</div>
+            </div>
+        </div>
+
+        <div class="section-title">🍽️ 美食餐廳</div>
+
+        <div class="checklist-card" data-start="2026-11-20" data-end="2026-11-20" onclick="toggleCard(this, event)">
+            <div class="checklist-header">
+                <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                <div class="checklist-title-box">
+                    <div class="checklist-title">碳佐麻里精品燒肉</div>
+                    <div class="checklist-meta">
+                        <span>🍽️ 美食餐廳</span>
+                        <span class="status-badge">計算中...</span>
+                    </div>
+                </div>
+                <span class="arrow-icon">▼</span>
+            </div>
+            <div class="checklist-details">
+                <div class="detail-row"><span class="detail-label">📅 預訂時間：</span>11/20 (12:00)</div>
+                <div class="detail-row"><span class="detail-label">📍 餐廳地點：</span>高雄市鼓山區美術東四路 562 號</div>
+                <div class="detail-row"><span class="detail-label">📝 備註事項：</span>頂級燒肉必吃，建議準時抵達辦理報到</div>
+            </div>
+        </div>
+
+        <div class="section-title">☕ 咖啡廳</div>
+
+        <div class="checklist-card" data-start="2026-11-18" data-end="2026-11-22" onclick="toggleCard(this, event)">
+            <div class="checklist-header">
+                <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                <div class="checklist-title-box">
+                    <div class="checklist-title">永心浮島 YONSHIN FUDOPIA</div>
+                    <div class="checklist-meta">
+                        <span>☕ 景觀咖啡廳</span>
+                        <span class="status-badge">計算中...</span>
+                    </div>
+                </div>
+                <span class="arrow-icon">▼</span>
+            </div>
+            <div class="checklist-details">
+                <div class="detail-row"><span class="detail-label">📅 建議時間：</span>中午或下午時段</div>
+                <div class="detail-row"><span class="detail-label">📍 店家地點：</span>高雄市鼓山區蓬萊路 xx 號</div>
+                <div class="detail-row"><span class="detail-label">📝 備註事項：</span>海景第一排餐廳，氛圍絕佳</div>
+            </div>
+        </div>
     </div>
 
-    <!-- 3. 行李清單頁面區塊（新增） -->
+    <!-- 3. 行李清單頁面區塊 -->
     <div class="container hidden" id="luggageView">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
             <h3 style="margin: 0;">🧳 行李準備清單</h3>
@@ -538,7 +597,7 @@
         <div class="luggage-item"><input type="checkbox" onchange="updateLuggageCount()"><span class="luggage-label">隨身常用藥品 / 防蚊保健品</span></div>
     </div>
 
-    <!-- 底部導覽頁籤（三大項目：活動、行李、行程） -->
+    <!-- 底部導覽頁籤 -->
     <div class="bottom-nav">
         <button class="nav-tab-btn" id="tabActivities" onclick="showTab('activities')">
             <span style="font-size: 16px;">✅</span>
@@ -581,12 +640,10 @@
             var tabLuggage = document.getElementById('tabLuggage');
             var tabSchedule = document.getElementById('tabSchedule');
 
-            // 隱藏全部頁面區塊
             scheduleView.classList.add('hidden');
             activitiesView.classList.add('hidden');
             luggageView.classList.add('hidden');
             
-            // 重置 Tab 活性標籤
             tabActivities.classList.remove('active');
             tabLuggage.classList.remove('active');
             tabSchedule.classList.remove('active');
@@ -661,7 +718,7 @@
         }
 
         function copySchedule() {
-            navigator.clipboard.writeText("2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅行程完成！");
+            navigator.clipboard.writeText("2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅💜");
             alert("行程標題已複製到剪貼簿！");
         }
 
