@@ -13,8 +13,6 @@
             --purple-light: #e0aaff;
             --tag-food: #f8d7da;
             --tag-spot: #d1ecf1;
-            
-            /* 狀態顏色 */
             --status-upcoming: #888888;
             --status-active: #28a745;
             --status-ended: #b0b0b0;
@@ -26,7 +24,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-color);
             color: #333;
             margin: 0;
@@ -34,7 +32,6 @@
             padding-bottom: 80px;
         }
 
-        /* 頂部區域 */
         .header {
             background-color: #fff;
             padding: 12px 15px 8px 15px;
@@ -70,7 +67,6 @@
             cursor: pointer;
         }
 
-        /* 天數導覽按鈕 */
         .day-nav {
             display: flex;
             gap: 6px;
@@ -90,7 +86,6 @@
             font-size: 12px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.2s ease;
         }
 
         .day-btn.active {
@@ -105,7 +100,6 @@
             margin: 0 auto;
         }
 
-        /* 行程卡片樣式 */
         .card {
             background: var(--card-bg);
             border-radius: 12px;
@@ -145,7 +139,23 @@
             font-size: 12px;
         }
 
-        /* 應援打卡點動態清單樣式 */
+        /* 大分類標題 */
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--purple-accent);
+            margin: 20px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 2px solid var(--purple-light);
+            padding-bottom: 6px;
+        }
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        /* 應援打卡卡片樣式 */
         .checklist-card {
             background: #fff;
             border-radius: 10px;
@@ -209,7 +219,6 @@
             transform: rotate(180deg);
         }
 
-        /* 展開詳細資訊內容 */
         .checklist-details {
             display: none;
             padding: 12px 14px 14px 48px;
@@ -223,16 +232,11 @@
             display: block;
         }
 
-        .detail-row {
-            margin-bottom: 6px;
-        }
+        .detail-row { margin-bottom: 6px; }
         .detail-row:last-child { margin-bottom: 0; }
-        .detail-label {
-            font-weight: bold;
-            color: var(--purple-accent);
-        }
+        .detail-label { font-weight: bold; color: var(--purple-accent); }
 
-        /* 底部頁籤 */
+        /* 底部導覽頁籤 */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -290,267 +294,4 @@
                 <div class="time">下午 2:00</div>
                 <div class="title">抵達高雄 / 飯店 Check-in</div>
                 <div class="tags"><span class="tag">住宿</span></div>
-                <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">整理行李、確認阿米棒（應援棒）電池與應援小卡。</p>
-            </div>
-            <div class="card">
-                <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
-                <div class="time">下午 5:00 - 下午 6:30</div>
-                <div class="title">駁二藝術特區 / 應援咖啡廳打卡</div>
-                <div class="tags">
-                    <span class="tag spot">景點</span>
-                    <span class="tag purple">💜 ARMY 應援</span>
-                </div>
-                <div class="transit-box">
-                    🚆 <b>交通：</b>捷運橘線至「鹽埕埔站」或「西子灣站」步行即可抵達。
-                </div>
-            </div>
-        </div>
-
-        <div id="day2-content" class="day-content hidden">
-            <div class="card">
-                <div class="time">下午 3:00 - 晚上 10:00</div>
-                <div class="title">🔥 BTS 演唱會 Day 1（高雄世運主場館）</div>
-                <div class="tags">
-                    <span class="tag purple">ARIRANG TOUR</span>
-                    <span class="tag">主行程</span>
-                </div>
-                <div class="transit-box">
-                    🚇 <b>交通：</b>搭乘捷運紅線至「世運站」R17 出站。
-                </div>
-            </div>
-        </div>
-
-        <div id="day3-content" class="day-content hidden">
-            <div class="card">
-                <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
-                <div class="time">中午 12:00</div>
-                <div class="title">永心浮島 YONSHIN FUDOPIA</div>
-                <div class="tags">
-                    <span class="tag food">美食</span>
-                    <span class="tag">未預訂</span>
-                </div>
-                <div class="transit-box">
-                    💡 <b>必點推薦：</b>碳烤生章魚腳、台式青醬牡蠣炒麵
-                </div>
-            </div>
-        </div>
-
-        <div id="day4-content" class="day-content hidden">
-            <div class="card">
-                <div class="time">下午 3:00 - 晚上 10:00</div>
-                <div class="title">🔥 BTS 演唱會 Day 2（高雄世運主場館）</div>
-                <div class="tags">
-                    <span class="tag purple">ARIRANG TOUR</span>
-                    <span class="tag">主行程</span>
-                </div>
-                <div class="transit-box">
-                    🚇 <b>交通：</b>搭乘捷運紅線至「世運站」R17 出站。
-                </div>
-            </div>
-        </div>
-
-        <div id="day5-content" class="day-content hidden">
-            <div class="card">
-                <div class="time">下午 2:00</div>
-                <div class="title">搭乘高鐵返家</div>
-                <div class="tags"><span class="tag">交通</span></div>
-                <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">滿載應援禮物與美好回憶賦歸！💜</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- 應援打卡清單頁區塊（可展開 + 日期自動判定狀態） -->
-    <div class="container hidden" id="checklistView">
-        <h3 style="margin-top: 0;">💜 應援打卡點 <span id="checkCount">0/4</span></h3>
-        
-        <!-- 打卡項目 1 -->
-        <div class="checklist-card" data-start="2026-11-18" data-end="2026-11-21">
-            <div class="checklist-header">
-                <input type="checkbox" onclick="event.stopPropagation(); updateCount();">
-                <div class="checklist-title-box" onclick="toggleDetails(this)">
-                    <div class="checklist-title">Compose Coffee 應援旗</div>
-                    <div class="checklist-meta">
-                        <span>☕ 咖啡廳</span>
-                        <span class="status-badge">計算中...</span>
-                    </div>
-                </div>
-                <span class="arrow-icon" onclick="toggleDetails(this)">▼</span>
-            </div>
-            <div class="checklist-details">
-                <div class="detail-row"><span class="detail-label">📅 活動時間：</span>11/18 - 11/21 (10:00 - 20:00)</div>
-                <div class="detail-row"><span class="detail-label">📍 應援地點：</span>高雄市鹽埕區五福四路 xx 號</div>
-                <div class="detail-row"><span class="detail-label">📝 備註事項：</span>消費滿 $150 贈送限量杯套與小卡組</div>
-            </div>
-        </div>
-
-        <!-- 打卡項目 2 -->
-        <div class="checklist-card" data-start="2026-11-15" data-end="2026-11-22">
-            <div class="checklist-header">
-                <input type="checkbox" onclick="event.stopPropagation(); updateCount();">
-                <div class="checklist-title-box" onclick="toggleDetails(this)">
-                    <div class="checklist-title">田柾國 & JIMIN 公車廣告看板</div>
-                    <div class="checklist-meta">
-                        <span>🚌 燈箱廣告</span>
-                        <span class="status-badge">計算中...</span>
-                    </div>
-                </div>
-                <span class="arrow-icon" onclick="toggleDetails(this)">▼</span>
-            </div>
-            <div class="checklist-details">
-                <div class="detail-row"><span class="detail-label">📅 活動時間：</span>11/15 - 11/22 全天</div>
-                <div class="detail-row"><span class="detail-label">📍 應援地點：</span>捷運美麗島站 / 巨蛋站 候車亭</div>
-                <div class="detail-row"><span class="detail-label">📝 備註事項：</span>建議白天拍照光線較佳</div>
-            </div>
-        </div>
-
-        <!-- 打卡項目 3 -->
-        <div class="checklist-card" data-start="2026-11-19" data-end="2026-11-20">
-            <div class="checklist-header">
-                <input type="checkbox" onclick="event.stopPropagation(); updateCount();">
-                <div class="checklist-title-box" onclick="toggleDetails(this)">
-                    <div class="checklist-title">LOVE QUEST 展覽</div>
-                    <div class="checklist-meta">
-                        <span>🖼️ 快閃展覽</span>
-                        <span class="status-badge">計算中...</span>
-                    </div>
-                </div>
-                <span class="arrow-icon" onclick="toggleDetails(this)">▼</span>
-            </div>
-            <div class="checklist-details">
-                <div class="detail-row"><span class="detail-label">📅 活動時間：</span>11/19 - 11/20 (11:00 - 18:00)</div>
-                <div class="detail-row"><span class="detail-label">📍 應援地點：</span>駁二藝術特區 大義倉庫 C8-1</div>
-                <div class="detail-row"><span class="detail-label">📝 備註事項：</span>已預約 11/19 14:00 場次，需出示預約 QR code</div>
-            </div>
-        </div>
-
-        <!-- 打卡項目 4 -->
-        <div class="checklist-card" data-start="2026-11-20" data-end="2026-11-20">
-            <div class="checklist-header">
-                <input type="checkbox" onclick="event.stopPropagation(); updateCount();">
-                <div class="checklist-title-box" onclick="toggleDetails(this)">
-                    <div class="checklist-title">永心浮島 粉絲聚餐</div>
-                    <div class="checklist-meta">
-                        <span>🍽️ 美食打卡</span>
-                        <span class="status-badge">計算中...</span>
-                    </div>
-                </div>
-                <span class="arrow-icon" onclick="toggleDetails(this)">▼</span>
-            </div>
-            <div class="checklist-details">
-                <div class="detail-row"><span class="detail-label">📅 活動時間：</span>11/20 (12:00 - 14:00)</div>
-                <div class="detail-row"><span class="detail-label">📍 應援地點：</span>永心浮島 YONSHIN FUDOPIA</div>
-                <div class="detail-row"><span class="detail-label">📝 備註事項：</span>聚餐預約完成，預計 4 人同行</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 底部導覽頁籤 -->
-    <div class="bottom-nav">
-        <button class="nav-tab-btn" id="tabChecklist" onclick="showTab('checklist')">
-            <span style="font-size: 16px;">✅</span>
-            <span>清單</span>
-        </button>
-        <button class="nav-tab-btn active" id="tabSchedule" onclick="showTab('schedule')">
-            <span style="font-size: 16px;">📅</span>
-            <span>行程</span>
-        </button>
-    </div>
-
-    <script>
-        // 切換 Day 1 ~ Day 5
-        function switchDay(day) {
-            var btns = document.querySelectorAll('.day-btn');
-            btns.forEach(function(btn, idx) {
-                if (idx === (day - 1)) btn.classList.add('active');
-                else btn.classList.remove('active');
-            });
-
-            var contents = document.querySelectorAll('.day-content');
-            contents.forEach(function(content) { content.classList.add('hidden'); });
-
-            var target = document.getElementById('day' + day + '-content');
-            if (target) target.classList.remove('hidden');
-        }
-
-        // 切換 行程 / 清單
-        function showTab(tab) {
-            var scheduleView = document.getElementById('scheduleView');
-            var checklistView = document.getElementById('checklistView');
-            var dayNav = document.getElementById('dayNav');
-            var tabChecklist = document.getElementById('tabChecklist');
-            var tabSchedule = document.getElementById('tabSchedule');
-
-            if (tab === 'schedule') {
-                scheduleView.classList.remove('hidden');
-                dayNav.classList.remove('hidden');
-                checklistView.classList.add('hidden');
-                tabSchedule.classList.add('active');
-                tabChecklist.classList.remove('active');
-            } else {
-                scheduleView.classList.add('hidden');
-                dayNav.classList.add('hidden');
-                checklistView.classList.remove('hidden');
-                tabChecklist.classList.add('active');
-                tabSchedule.classList.remove('active');
-            }
-        }
-
-        // 展開/折疊詳細資訊
-        function toggleDetails(element) {
-            var card = element.closest('.checklist-card');
-            card.classList.toggle('open');
-        }
-
-        // 自動根據日期比對狀態 (已開始 / 未開始 / 已結束)
-        function updateStatuses() {
-            var today = new Date();
-            today.setHours(0,0,0,0); // 只比對日期
-
-            var cards = document.querySelectorAll('.checklist-card');
-            cards.forEach(function(card) {
-                var startStr = card.getAttribute('data-start');
-                var endStr = card.getAttribute('data-end');
-                var badge = card.querySelector('.status-badge');
-
-                if (startStr && endStr && badge) {
-                    var startDate = new Date(startStr);
-                    var endDate = new Date(endStr);
-                    startDate.setHours(0,0,0,0);
-                    endDate.setHours(23,59,59,999);
-
-                    if (today < startDate) {
-                        badge.innerText = '未開始';
-                        badge.className = 'status-badge upcoming';
-                    } else if (today >= startDate && today <= endDate) {
-                        badge.innerText = '進行中';
-                        badge.className = 'status-badge active';
-                    } else {
-                        badge.innerText = '已結束';
-                        badge.className = 'status-badge ended';
-                    }
-                }
-            });
-        }
-
-        // 統計勾選數
-        function updateCount() {
-            var checkboxes = document.querySelectorAll('#checklistView input[type="checkbox"]');
-            var checked = 0;
-            checkboxes.forEach(function(cb) {
-                if (cb.checked) checked++;
-            });
-            document.getElementById('checkCount').innerText = checked + '/' + checkboxes.length;
-        }
-
-        function copySchedule() {
-            navigator.clipboard.writeText("2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅行程完成！");
-            alert("行程標題已複製到剪貼簿！");
-        }
-
-        // 頁面載入後自動更新日期狀態
-        window.onload = function() {
-            updateStatuses();
-        };
-    </script>
-</body>
-</html>
+                <p style="margin: 5px 0 0
