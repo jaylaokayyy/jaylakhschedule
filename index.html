@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅</title>
     <style>
         :root {
@@ -15,8 +15,13 @@
             --tag-spot: #d1ecf1;
         }
 
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-color);
             color: #333;
             margin: 0;
@@ -24,18 +29,20 @@
             padding-bottom: 80px;
         }
 
+        /* 頂部區域 */
         .header {
             background-color: #fff;
-            padding: 15px;
+            padding: 12px 15px 8px 15px;
             text-align: center;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #e2e2e2;
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
         }
 
         .main-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             color: var(--purple-accent);
             margin: 0 0 10px 0;
@@ -45,37 +52,40 @@
         .action-btns {
             display: flex;
             justify-content: flex-end;
-            gap: 10px;
-            margin-bottom: 12px;
+            gap: 8px;
+            margin-bottom: 10px;
         }
 
         .btn {
-            padding: 6px 14px;
+            padding: 5px 12px;
             border: 1px solid #ccc;
             background: #fff;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
         }
 
+        /* 天數導覽按鈕 */
         .day-nav {
             display: flex;
             gap: 6px;
             overflow-x: auto;
-            padding: 5px 0;
+            padding: 4px 0;
+            -webkit-overflow-scrolling: touch;
         }
 
         .day-btn {
             flex: 1;
-            min-width: 60px;
-            padding: 8px 0;
+            min-width: 62px;
+            padding: 6px 0;
             background: #fff;
             border: 1px solid #ddd;
             border-radius: 6px;
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
         .day-btn.active {
@@ -108,7 +118,7 @@
         }
 
         .title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: bold;
             margin: 6px 0;
         }
@@ -121,7 +131,7 @@
         }
 
         .tag {
-            font-size: 12px;
+            font-size: 11px;
             padding: 3px 8px;
             border-radius: 4px;
             background: #eee;
@@ -138,6 +148,7 @@
             font-size: 13px;
             margin-top: 10px;
             border: 1px solid #eee;
+            line-height: 1.5;
         }
 
         .nav-link {
@@ -156,16 +167,18 @@
             display: flex;
             align-items: center;
             background: #fff;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 14px;
+            border-radius: 10px;
             margin-bottom: 10px;
             box-shadow: 0 1px 4px rgba(0,0,0,0.05);
         }
 
         .checklist-item input {
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             margin-right: 12px;
+            accent-color: var(--purple-accent);
+            cursor: pointer;
         }
 
         /* 底部頁籤 */
@@ -181,7 +194,7 @@
             z-index: 1000;
         }
 
-        .nav-item {
+        .nav-tab-btn {
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -190,14 +203,16 @@
             font-size: 12px;
             color: #666;
             cursor: pointer;
+            background: none;
+            border: none;
         }
 
-        .nav-item.active {
+        .nav-tab-btn.active {
             color: var(--purple-accent);
             font-weight: bold;
         }
 
-        .hidden { display: none; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
@@ -209,4 +224,203 @@
             <button class="btn" onclick="window.print()">存成 PDF</button>
         </div>
         <div class="day-nav" id="dayNav">
-            <div class="day-btn active" onclick="switchDay(1)">Day 1<br><small
+            <button class="day-btn active" onclick="switchDay(1)">Day 1<br><small>11/18</small></button>
+            <button class="day-btn" onclick="switchDay(2)">Day 2<br><small>11/19</small></button>
+            <button class="day-btn" onclick="switchDay(3)">Day 3<br><small>11/20</small></button>
+            <button class="day-btn" onclick="switchDay(4)">Day 4<br><small>11/21</small></button>
+            <button class="day-btn" onclick="switchDay(5)">Day 5<br><small>11/22</small></button>
+        </div>
+    </div>
+
+    <!-- 行程頁面主區塊 -->
+    <div class="container" id="scheduleView">
+        <!-- Day 1 -->
+        <div id="day1-content" class="day-content">
+            <div class="card">
+                <div class="time">下午 2:00</div>
+                <div class="title">抵達高雄 / 飯店 Check-in</div>
+                <div class="tags"><span class="tag">住宿</span></div>
+                <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">整理行李、確認阿米棒（應援棒）電池與應援小卡。</p>
+            </div>
+
+            <div class="card">
+                <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
+                <div class="time">下午 5:00 - 下午 6:30</div>
+                <div class="title">駁二藝術特區 / 應援咖啡廳打卡</div>
+                <div class="tags">
+                    <span class="tag spot">景點</span>
+                    <span class="tag purple">💜 ARMY 應援</span>
+                </div>
+                <div class="transit-box">
+                    🚆 <b>交通：</b>捷運橘線至「鹽埕埔站」或「西子灣站」步行即可抵達。
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div id="day2-content" class="day-content hidden">
+            <div class="card">
+                <div class="time">下午 3:00 - 晚上 10:00</div>
+                <div class="title">🔥 BTS 演唱會 Day 1（高雄世運主場館）</div>
+                <div class="tags">
+                    <span class="tag purple">ARIRANG TOUR</span>
+                    <span class="tag">主行程</span>
+                </div>
+                <div class="transit-box">
+                    🚇 <b>交通：</b>搭乘捷運紅線至「世運站」R17 出站，依指引步行至場館。
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3 -->
+        <div id="day3-content" class="day-content hidden">
+            <div class="card">
+                <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
+                <div class="time">中午 12:00</div>
+                <div class="title">永心浮島 YONSHIN FUDOPIA</div>
+                <div class="tags">
+                    <span class="tag food">美食</span>
+                    <span class="tag">未預訂</span>
+                </div>
+                <div class="transit-box">
+                    💡 <b>必點推薦：</b>碳烤生章魚腳、台式青醬牡蠣炒麵
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 4 -->
+        <div id="day4-content" class="day-content hidden">
+            <div class="card">
+                <div class="time">下午 3:00 - 晚上 10:00</div>
+                <div class="title">🔥 BTS 演唱會 Day 2（高雄世運主場館）</div>
+                <div class="tags">
+                    <span class="tag purple">ARIRANG TOUR</span>
+                    <span class="tag">主行程</span>
+                </div>
+                <div class="transit-box">
+                    🚇 <b>交通：</b>搭乘捷運紅線至「世運站」R17 出站。
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 5 -->
+        <div id="day5-content" class="day-content hidden">
+            <div class="card">
+                <div class="time">下午 2:00</div>
+                <div class="title">搭乘高鐵返家</div>
+                <div class="tags"><span class="tag">交通</span></div>
+                <p style="margin: 5px 0 0 0; color: #666; font-size: 14px;">滿載應援禮物與美好回憶賦歸！💜</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 應援打卡清單頁區塊 -->
+    <div class="container hidden" id="checklistView">
+        <h3 style="margin-top: 0;">💜 應援打卡點 <span id="checkCount">0/4</span></h3>
+        
+        <div class="checklist-item">
+            <input type="checkbox" onchange="updateCount()">
+            <div>
+                <b style="font-size: 15px;">Compose Coffee 應援旗</b><br>
+                <small style="color: #666;">🏷️ 咖啡廳 • 未開始</small>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" onchange="updateCount()">
+            <div>
+                <b style="font-size: 15px;">高雄捷運公車廣告看板</b><br>
+                <small style="color: #666;">🏷️ 燈箱廣告</small>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" onchange="updateCount()">
+            <div>
+                <b style="font-size: 15px;">JIMIN 應援展覽</b><br>
+                <small style="color: #666;">🏷️ 快閃展覽 • 已預約</small>
+            </div>
+        </div>
+        <div class="checklist-item">
+            <input type="checkbox" onchange="updateCount()">
+            <div>
+                <b style="font-size: 15px;">永心浮島 粉絲聚餐</b><br>
+                <small style="color: #666;">🏷️ 美食打卡</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部導覽頁籤 -->
+    <div class="bottom-nav">
+        <button class="nav-tab-btn" id="tabChecklist" onclick="showTab('checklist')">
+            <span style="font-size: 16px;">✅</span>
+            <span>清單</span>
+        </button>
+        <button class="nav-tab-btn active" id="tabSchedule" onclick="showTab('schedule')">
+            <span style="font-size: 16px;">📅</span>
+            <span>行程</span>
+        </button>
+    </div>
+
+    <script>
+        // 切換 Day 1 ~ Day 5
+        function switchDay(day) {
+            var btns = document.querySelectorAll('.day-btn');
+            btns.forEach(function(btn, idx) {
+                if (idx === (day - 1)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            var contents = document.querySelectorAll('.day-content');
+            contents.forEach(function(content) {
+                content.classList.add('hidden');
+            });
+
+            var target = document.getElementById('day' + day + '-content');
+            if (target) {
+                target.classList.remove('hidden');
+            }
+        }
+
+        // 切換 行程 / 清單
+        function showTab(tab) {
+            var scheduleView = document.getElementById('scheduleView');
+            var checklistView = document.getElementById('checklistView');
+            var dayNav = document.getElementById('dayNav');
+            var tabChecklist = document.getElementById('tabChecklist');
+            var tabSchedule = document.getElementById('tabSchedule');
+
+            if (tab === 'schedule') {
+                scheduleView.classList.remove('hidden');
+                dayNav.classList.remove('hidden');
+                checklistView.classList.add('hidden');
+                tabSchedule.classList.add('active');
+                tabChecklist.classList.remove('active');
+            } else {
+                scheduleView.classList.add('hidden');
+                dayNav.classList.add('hidden');
+                checklistView.classList.remove('hidden');
+                tabChecklist.classList.add('active');
+                tabSchedule.classList.remove('active');
+            }
+        }
+
+        // 統計勾選數
+        function updateCount() {
+            var checkboxes = document.querySelectorAll('#checklistView input[type="checkbox"]');
+            var checked = 0;
+            checkboxes.forEach(function(cb) {
+                if (cb.checked) checked++;
+            });
+            document.getElementById('checkCount').innerText = checked + '/' + checkboxes.length;
+        }
+
+        // 複製行程文字
+        function copySchedule() {
+            navigator.clipboard.writeText("2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅行程完成！");
+            alert("行程標題已複製到剪貼簿！");
+        }
+    </script>
+</body>
+</html>
