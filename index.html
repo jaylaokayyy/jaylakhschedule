@@ -108,7 +108,7 @@
             display: none;
         }
 
-        /* 網頁主內容預設隱藏，解鎖後顯示 */
+        /* 預設隱藏主應用 */
         #main-app {
             display: none;
         }
@@ -337,7 +337,7 @@
 
         .checklist-details {
             display: none;
-            padding: 12px 14px 14px 48px;
+            padding: 12px 14px 14px 14px;
             background: #fafafa;
             border-top: 1px dashed #eee;
             font-size: 13px;
@@ -348,9 +348,50 @@
             display: block;
         }
 
+        /* 活動圖片樣式 */
+        .event-img {
+            width: 100%;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
         .detail-row { margin-bottom: 6px; }
         .detail-row:last-child { margin-bottom: 0; }
         .detail-label { font-weight: bold; color: var(--purple-accent); }
+
+        /* 底部導覽頁籤 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #fff;
+            display: flex;
+            border-top: 1px solid #ddd;
+            z-index: 1000;
+        }
+
+        .nav-tab-btn {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .nav-tab-btn.active {
+            color: var(--purple-accent);
+            font-weight: bold;
+        }
 
         .hidden { display: none !important; }
     </style>
@@ -768,34 +809,226 @@
                 </div>
             </div>
         </div>
+
+        <!-- 2. 活動打卡頁面區塊 -->
+        <div class="container hidden" id="activitiesView">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="margin: 0;">💜 活動打卡清單</h3>
+                <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="checkCount">0/0</span>
+            </div>
+
+            <!-- 📍 應援打卡點區塊 -->
+            <div class="section-title">📍 應援打卡點</div>
+
+            <div class="checklist-card" data-start="2026-11-15" data-end="2026-11-22" onclick="toggleCard(this, event)">
+                <div class="checklist-header">
+                    <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                    <div class="checklist-title-box">
+                        <div class="checklist-title">田柾國 & JIMIN 公車廣告看板</div>
+                        <div class="checklist-meta">
+                            <span>🚌 燈箱廣告</span>
+                            <span class="status-badge">計算中...</span>
+                        </div>
+                    </div>
+                    <span class="arrow-icon">▼</span>
+                </div>
+                <div class="checklist-details">
+                    <!-- 圖片展示 -->
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop" alt="公車廣告看板" class="event-img">
+                    <div class="detail-row"><span class="detail-label">📅 活動日期：</span>2026/11/15 - 11/22（全天）</div>
+                    <div class="detail-row"><span class="detail-label">📍 地點位置：</span>捷運美麗島站 / 巨蛋站 候車亭</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>建議白天拍攝光線較佳，夜間點燈時拍攝有不同氛圍。</div>
+                </div>
+            </div>
+
+            <div class="checklist-card" data-start="2026-11-19" data-end="2026-11-20" onclick="toggleCard(this, event)">
+                <div class="checklist-header">
+                    <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                    <div class="checklist-title-box">
+                        <div class="checklist-title">LOVE QUEST 展覽</div>
+                        <div class="checklist-meta">
+                            <span>🖼️ 快閃展覽</span>
+                            <span class="status-badge">計算中...</span>
+                        </div>
+                    </div>
+                    <span class="arrow-icon">▼</span>
+                </div>
+                <div class="checklist-details">
+                    <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?w=600&auto=format&fit=crop" alt="LOVE QUEST 展覽" class="event-img">
+                    <div class="detail-row"><span class="detail-label">📅 活動日期：</span>2026/11/19 - 11/20（11:00 - 18:00）</div>
+                    <div class="detail-row"><span class="detail-label">📍 地點位置：</span>駁二藝術特區 大義倉庫 C8-1</div>
+                    <div class="detail-row"><span class="detail-label">🎁 發放物料：</span>入場即贈限量導覽冊與紀念門票</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>已預約 11/19 14:00 場次，現場需出示預約 QR Code。</div>
+                </div>
+            </div>
+
+            <div class="checklist-card" data-start="2026-11-01" data-end="2026-11-30" onclick="toggleCard(this, event)">
+                <div class="checklist-header">
+                    <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                    <div class="checklist-title-box">
+                        <div class="checklist-title">LADOR 快閃店</div>
+                        <div class="checklist-meta">
+                            <span>💄 品牌快閃店</span>
+                            <span class="status-badge">計算中...</span>
+                        </div>
+                    </div>
+                    <span class="arrow-icon">▼</span>
+                </div>
+                <div class="checklist-details">
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop" alt="LADOR 快閃店" class="event-img">
+                    <div class="detail-row"><span class="detail-label">📅 活動日期：</span>2026/11/01 - 11/30（11:00 - 22:00）</div>
+                    <div class="detail-row"><span class="detail-label">📍 地點位置：</span>高雄漢神巨蛋購物廣場 1F</div>
+                    <div class="detail-row"><span class="detail-label">🎁 發放物料：</span>打卡送代言人專屬小卡組與試用包</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>消費滿額可抽取限量周邊禮盒。</div>
+                </div>
+            </div>
+
+            <!-- ☕ 應援咖啡廳區塊 -->
+            <div class="section-title">☕ 應援咖啡廳</div>
+
+            <div class="checklist-card" data-start="2026-11-18" data-end="2026-11-21" onclick="toggleCard(this, event)">
+                <div class="checklist-header">
+                    <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                    <div class="checklist-title-box">
+                        <div class="checklist-title">Compose Coffee 應援旗店</div>
+                        <div class="checklist-meta">
+                            <span>☕ 應援咖啡廳</span>
+                            <span class="status-badge">計算中...</span>
+                        </div>
+                    </div>
+                    <span class="arrow-icon">▼</span>
+                </div>
+                <div class="checklist-details">
+                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&auto=format&fit=crop" alt="Compose Coffee" class="event-img">
+                    <div class="detail-row"><span class="detail-label">📅 活動日期：</span>2026/11/18 - 11/21（10:00 - 20:00）</div>
+                    <div class="detail-row"><span class="detail-label">📍 地點位置：</span>高雄市鹽埕區五福四路 xx 號</div>
+                    <div class="detail-row"><span class="detail-label">🎁 發放物料：</span>消費特調飲品送限量杯套、透卡、明信片組</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>每日限量 100 份，建議中午前抵達排隊。</div>
+                </div>
+            </div>
+
+            <div class="checklist-card" data-start="2026-11-18" data-end="2026-11-22" onclick="toggleCard(this, event)">
+                <div class="checklist-header">
+                    <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                    <div class="checklist-title-box">
+                        <div class="checklist-title">ETHEREAL 高雄應援咖啡廳</div>
+                        <div class="checklist-meta">
+                            <span>☕ 應援咖啡廳</span>
+                            <span class="status-badge">計算中...</span>
+                        </div>
+                    </div>
+                    <span class="arrow-icon">▼</span>
+                </div>
+                <div class="checklist-details">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&auto=format&fit=crop" alt="ETHEREAL 咖啡廳" class="event-img">
+                    <div class="detail-row"><span class="detail-label">📅 活動日期：</span>2026/11/18 - 11/22（11:00 - 19:00）</div>
+                    <div class="detail-row"><span class="detail-label">📍 地點位置：</span>高雄市新興區 xx 路 xx 號</div>
+                    <div class="detail-row"><span class="detail-label">🎁 發放物料：</span>點購特定套餐送成員生日相框卡片、貼紙包</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>需現場發號碼牌候位，店內低消為一杯飲品。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📱 底部頁籤導覽列 -->
+        <div class="bottom-nav">
+            <button class="nav-tab-btn active" id="tab-schedule" onclick="switchMainTab('schedule')">
+                <span style="font-size: 18px;">🗓️</span>
+                <span>行程規劃</span>
+            </button>
+            <button class="nav-tab-btn" id="tab-activities" onclick="switchMainTab('activities')">
+                <span style="font-size: 18px;">📍</span>
+                <span>活動打卡</span>
+            </button>
+        </div>
     </div>
 
     <script>
         // 🔐 密碼驗證邏輯
         function verifyPassword() {
-            // 在這裡設定你的密碼（預設為 0613）
-            const myPassword = "1829";
+            const myPassword = "0613";
             const entered = document.getElementById("passwordInput").value;
 
             if (entered === myPassword) {
-                // 隱藏登入畫面
                 document.getElementById("login-overlay").style.display = "none";
-                // 顯示主網頁內容
                 document.getElementById("main-app").style.display = "block";
+                updateActivityStatuses();
+                updateActivityCount();
             } else {
-                // 顯示錯誤訊息
                 document.getElementById("error-msg").style.display = "block";
                 document.getElementById("passwordInput").value = "";
             }
         }
 
-        // 原本行程表的切換日與其他互動功能
+        // 🗓️ 行程天數切換
         function switchDay(dayNum) {
             document.querySelectorAll('.day-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.day-btn').forEach(el => el.classList.remove('active'));
             
             document.getElementById(`day${dayNum}-content`).classList.remove('hidden');
             event.currentTarget.classList.add('active');
+        }
+
+        // 📱 底部主選單切換（行程 vs 活動）
+        function switchMainTab(tabName) {
+            const scheduleView = document.getElementById('scheduleView');
+            const activitiesView = document.getElementById('activitiesView');
+            const dayNav = document.getElementById('dayNav');
+            const tabSchedule = document.getElementById('tab-schedule');
+            const tabActivities = document.getElementById('tab-activities');
+
+            if (tabName === 'schedule') {
+                scheduleView.classList.remove('hidden');
+                activitiesView.classList.add('hidden');
+                dayNav.classList.remove('hidden');
+                tabSchedule.classList.add('active');
+                tabActivities.classList.remove('active');
+            } else {
+                scheduleView.classList.add('hidden');
+                activitiesView.classList.remove('hidden');
+                dayNav.classList.add('hidden');
+                tabSchedule.classList.remove('active');
+                tabActivities.classList.add('active');
+            }
+        }
+
+        // 📍 活動卡片展開/收合
+        function toggleCard(cardElement, event) {
+            cardElement.classList.toggle('open');
+        }
+
+        // 📊 更新打卡數量統計
+        function updateActivityCount() {
+            const checkboxes = document.querySelectorAll('#activitiesView input[type="checkbox"]');
+            const checked = document.querySelectorAll('#activitiesView input[type="checkbox"]:checked');
+            const countDisplay = document.getElementById('checkCount');
+            if(countDisplay) {
+                countDisplay.innerText = `${checked.length}/${checkboxes.length}`;
+            }
+        }
+
+        // ⏳ 自動計算活動狀態標籤 (未開始 / 進行中 / 已結束)
+        function updateActivityStatuses() {
+            const todayStr = new Date().toISOString().split('T')[0];
+            const cards = document.querySelectorAll('.checklist-card');
+
+            cards.forEach(card => {
+                const start = card.getAttribute('data-start');
+                const end = card.getAttribute('data-end');
+                const badge = card.querySelector('.status-badge');
+
+                if (badge && start && end) {
+                    if (todayStr < start) {
+                        badge.innerText = "未開始";
+                        badge.className = "status-badge upcoming";
+                    } else if (todayStr >= start && todayStr <= end) {
+                        badge.innerText = "進行中";
+                        badge.className = "status-badge active";
+                    } else {
+                        badge.innerText = "已結束";
+                        badge.className = "status-badge ended";
+                    }
+                }
+            });
         }
 
         function copySchedule() {
