@@ -220,7 +220,7 @@
             font-size: 12px;
         }
 
-        /* 虛線連接桿與單條簡單交通欄 */
+        /* 虛線連接桿 */
         .route-connector {
             display: flex;
             align-items: center;
@@ -279,6 +279,19 @@
             box-shadow: 0 1px 4px rgba(0,0,0,0.05);
             overflow: hidden;
             border-left: 4px solid var(--purple-accent);
+            transition: all 0.3s ease;
+        }
+
+        /* 完成打卡時的樣式：淡化 */
+        .checklist-card.completed {
+            opacity: 0.55;
+            background-color: #f9f9f9;
+            border-left-color: #aaa;
+        }
+
+        .checklist-card.completed .checklist-title {
+            text-decoration: line-through;
+            color: #777;
         }
 
         .checklist-header {
@@ -304,6 +317,7 @@
             font-size: 15px;
             font-weight: bold;
             color: #333;
+            transition: color 0.2s;
         }
 
         .checklist-meta {
@@ -335,6 +349,7 @@
             transform: rotate(180deg);
         }
 
+        /* 預設展開內容的細節區塊 */
         .checklist-details {
             display: none;
             padding: 12px 14px 14px 14px;
@@ -817,12 +832,12 @@
                 <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="checkCount">0/0</span>
             </div>
 
-            <!-- 📍 應援打卡點區塊 -->
+            <!-- 📍 應援打卡點區塊 (加上 class "open" 設為預設展開) -->
             <div class="section-title">📍 應援打卡點</div>
 
-            <div class="checklist-card" data-start="2026-11-15" data-end="2026-11-22" onclick="toggleCard(this, event)">
+            <div class="checklist-card open" data-start="2026-11-15" data-end="2026-11-22" onclick="toggleCard(this, event)">
                 <div class="checklist-header">
-                    <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                    <input type="checkbox" onclick="handleCheckboxClick(this, event)">
                     <div class="checklist-title-box">
                         <div class="checklist-title">田柾國 & JIMIN 公車廣告看板</div>
                         <div class="checklist-meta">
@@ -833,7 +848,6 @@
                     <span class="arrow-icon">▼</span>
                 </div>
                 <div class="checklist-details">
-                    <!-- 圖片展示 -->
                     <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop" alt="公車廣告看板" class="event-img">
                     <div class="detail-row"><span class="detail-label">📅 活動日期：</span>2026/11/15 - 11/22（全天）</div>
                     <div class="detail-row"><span class="detail-label">📍 地點位置：</span>捷運美麗島站 / 巨蛋站 候車亭</div>
@@ -841,9 +855,9 @@
                 </div>
             </div>
 
-            <div class="checklist-card" data-start="2026-11-19" data-end="2026-11-20" onclick="toggleCard(this, event)">
+            <div class="checklist-card open" data-start="2026-11-19" data-end="2026-11-20" onclick="toggleCard(this, event)">
                 <div class="checklist-header">
-                    <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                    <input type="checkbox" onclick="handleCheckboxClick(this, event)">
                     <div class="checklist-title-box">
                         <div class="checklist-title">LOVE QUEST 展覽</div>
                         <div class="checklist-meta">
@@ -862,9 +876,9 @@
                 </div>
             </div>
 
-            <div class="checklist-card" data-start="2026-11-01" data-end="2026-11-30" onclick="toggleCard(this, event)">
+            <div class="checklist-card open" data-start="2026-11-01" data-end="2026-11-30" onclick="toggleCard(this, event)">
                 <div class="checklist-header">
-                    <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                    <input type="checkbox" onclick="handleCheckboxClick(this, event)">
                     <div class="checklist-title-box">
                         <div class="checklist-title">LADOR 快閃店</div>
                         <div class="checklist-meta">
@@ -883,12 +897,12 @@
                 </div>
             </div>
 
-            <!-- ☕ 應援咖啡廳區塊 -->
+            <!-- ☕ 應援咖啡廳區塊 (預設展開) -->
             <div class="section-title">☕ 應援咖啡廳</div>
 
-            <div class="checklist-card" data-start="2026-11-18" data-end="2026-11-21" onclick="toggleCard(this, event)">
+            <div class="checklist-card open" data-start="2026-11-18" data-end="2026-11-21" onclick="toggleCard(this, event)">
                 <div class="checklist-header">
-                    <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                    <input type="checkbox" onclick="handleCheckboxClick(this, event)">
                     <div class="checklist-title-box">
                         <div class="checklist-title">Compose Coffee 應援旗店</div>
                         <div class="checklist-meta">
@@ -907,9 +921,9 @@
                 </div>
             </div>
 
-            <div class="checklist-card" data-start="2026-11-18" data-end="2026-11-22" onclick="toggleCard(this, event)">
+            <div class="checklist-card open" data-start="2026-11-18" data-end="2026-11-22" onclick="toggleCard(this, event)">
                 <div class="checklist-header">
-                    <input type="checkbox" onclick="event.stopPropagation(); updateActivityCount();">
+                    <input type="checkbox" onclick="handleCheckboxClick(this, event)">
                     <div class="checklist-title-box">
                         <div class="checklist-title">ETHEREAL 高雄應援咖啡廳</div>
                         <div class="checklist-meta">
@@ -945,7 +959,7 @@
     <script>
         // 🔐 密碼驗證邏輯
         function verifyPassword() {
-            const myPassword = "0613";
+            const myPassword = "jjjj";
             const entered = document.getElementById("passwordInput").value;
 
             if (entered === myPassword) {
@@ -991,9 +1005,24 @@
             }
         }
 
-        // 📍 活動卡片展開/收合
+        // 📍 活動卡片點擊展開/收合
         function toggleCard(cardElement, event) {
             cardElement.classList.toggle('open');
+        }
+
+        // ✍️ 勾選打卡方塊的互動行為（勾選 -> 自動收合並淡化 / 取消勾選 -> 自動展開）
+        function handleCheckboxClick(checkbox, event) {
+            event.stopPropagation(); // 阻止冒泡避免觸發 toggleCard
+            const card = checkbox.closest('.checklist-card');
+            
+            if (checkbox.checked) {
+                card.classList.remove('open'); // 自動收合細節
+                card.classList.add('completed'); // 加入完成狀態 (劃線、淡化)
+            } else {
+                card.classList.add('open'); // 取消打勾時自動展開
+                card.classList.remove('completed');
+            }
+            updateActivityCount();
         }
 
         // 📊 更新打卡數量統計
