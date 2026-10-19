@@ -100,11 +100,11 @@
             margin: 0 auto;
         }
 
+        /* 行程卡片 */
         .card {
             background: var(--card-bg);
             border-radius: 12px;
             padding: 16px;
-            margin-bottom: 16px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             position: relative;
             border-left: 4px solid var(--purple-accent);
@@ -137,6 +137,41 @@
             border-radius: 15px;
             text-decoration: none;
             font-size: 12px;
+        }
+
+        /* 圖片款：行程卡片間的單條簡單交通欄 */
+        .route-connector {
+            display: flex;
+            align-items: center;
+            padding: 12px 6px;
+            gap: 10px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .route-line-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 16px;
+        }
+
+        .route-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 2px solid #888;
+            background: #fff;
+        }
+
+        .route-dashed-line {
+            width: 0;
+            height: 16px;
+            border-left: 2px dashed #bbb;
+        }
+
+        .route-text {
+            font-weight: 500;
         }
 
         /* 大分類標題 */
@@ -320,10 +355,16 @@
                     <span class="tag">高鐵</span>
                     <span class="tag purple">台北 ➔ 左營</span>
                 </div>
-                <div class="transit-box">
-                    🚄 <b>車次細節：</b>19:31 台北車站出發，21:05 抵達左營站。<br>
-                    🚗 <b>交通移動：</b>高鐵直達（約 1 小時 34 分鐘）
+            </div>
+
+            <!-- 單條簡單交通說明 (圖片樣式) -->
+            <div class="route-connector">
+                <div class="route-line-box">
+                    <div class="route-dashed-line"></div>
+                    <div class="route-dot"></div>
+                    <div class="route-dashed-line"></div>
                 </div>
+                <div class="route-text">🚆 捷運/步行 左營站 ➔ 世運主場館 • 約 15 分鐘</div>
             </div>
 
             <div class="card">
@@ -334,49 +375,65 @@
                     <span class="tag spot">景點</span>
                     <span class="tag purple">💜 夜間打卡</span>
                 </div>
-                <div class="transit-box">
-                    🚗 <b>交通移動：</b>左營站搭乘捷運紅線至「世運站」R17（約 5 分鐘）➔ 步行至場館（約 10 分鐘）
+            </div>
+
+            <!-- 單條簡單交通說明 -->
+            <div class="route-connector">
+                <div class="route-line-box">
+                    <div class="route-dashed-line"></div>
+                    <div class="route-dot"></div>
+                    <div class="route-dashed-line"></div>
                 </div>
+                <div class="route-text">🚆 捷運 世運站 ➔ 飯店住宿 • 約 20 分鐘</div>
             </div>
 
             <div class="card">
                 <div class="time">晚上 22:30</div>
                 <div class="title">飯店 Check-in / 休息預備</div>
                 <div class="tags"><span class="tag">住宿</span></div>
-                <div class="transit-box">
-                    🚗 <b>交通移動：</b>世運站搭乘捷運返回住宿飯店（約 15-20 分鐘）
-                </div>
                 <p style="margin: 8px 0 0 0; color: #666; font-size: 14px;">辦理入住、放置行李，整理演唱會應援物料與阿米棒電池，早點休息充電！</p>
             </div>
         </div>
 
         <!-- Day 2 -->
         <div id="day2-content" class="day-content hidden">
+            <div class="route-connector" style="padding-top: 0;">
+                <div class="route-line-box">
+                    <div class="route-dot"></div>
+                    <div class="route-dashed-line"></div>
+                </div>
+                <div class="route-text">🚆 捷運 飯店住宿 ➔ 世運主場館 • 約 25 分鐘</div>
+            </div>
+
             <div class="card">
                 <div class="time">下午 3:00 - 晚上 10:00</div>
-                <div class="title">🔥 [從住宿出發] BTS 演唱會 Day 1（高雄世運主場館）</div>
+                <div class="title">🔥 BTS 演唱會 Day 1（高雄世運主場館）</div>
                 <div class="tags">
                     <span class="tag purple">ARIRANG TOUR</span>
                     <span class="tag">主行程</span>
-                </div>
-                <div class="transit-box">
-                    🚗 <b>交通移動：</b>從住宿地點出發 ➔ 搭乘捷運紅線至「世運站」R17 出站（約 20-30 分鐘）
                 </div>
             </div>
         </div>
 
         <!-- Day 3 -->
         <div id="day3-content" class="day-content hidden">
+            <div class="route-connector" style="padding-top: 0;">
+                <div class="route-line-box">
+                    <div class="route-dot"></div>
+                    <div class="route-dashed-line"></div>
+                </div>
+                <div class="route-text">🚗 捷運/計程車 飯店住宿 ➔ 碳佐麻里 • 約 20 分鐘</div>
+            </div>
+
             <div class="card">
                 <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
                 <div class="time">中午 12:00</div>
-                <div class="title">🍽️ [從住宿出發] 碳佐麻里精品燒肉</div>
+                <div class="title">🍽️ 碳佐麻里精品燒肉</div>
                 <div class="tags">
                     <span class="tag food">美食</span>
                     <span class="tag">預訂午餐</span>
                 </div>
                 <div class="transit-box">
-                    🚗 <b>交通移動：</b>從住宿地點出發 ➔ 搭乘捷運/計程車前往美術東四路（約 20-25 分鐘）<br>
                     💡 <b>美味推薦：</b>極上和牛燒肉、精品切盤、特色手作甜點與飲品。
                 </div>
             </div>
@@ -384,32 +441,52 @@
 
         <!-- Day 4 -->
         <div id="day4-content" class="day-content hidden">
+            <div class="route-connector" style="padding-top: 0;">
+                <div class="route-line-box">
+                    <div class="route-dot"></div>
+                    <div class="route-dashed-line"></div>
+                </div>
+                <div class="route-text">🚆 捷運 飯店住宿 ➔ 世運主場館 • 約 25 分鐘</div>
+            </div>
+
             <div class="card">
                 <div class="time">下午 3:00 - 晚上 10:00</div>
-                <div class="title">🔥 [從住宿出發] BTS 演唱會 Day 2（高雄世運主場館）</div>
+                <div class="title">🔥 BTS 演唱會 Day 2（高雄世運主場館）</div>
                 <div class="tags">
                     <span class="tag purple">ARIRANG TOUR</span>
                     <span class="tag">主行程</span>
-                </div>
-                <div class="transit-box">
-                    🚗 <b>交通移動：</b>從住宿地點出發 ➔ 搭乘捷運紅線至「世運站」R17 出站（約 20-30 分鐘）
                 </div>
             </div>
         </div>
 
         <!-- Day 5 -->
         <div id="day5-content" class="day-content hidden">
+            <div class="route-connector" style="padding-top: 0;">
+                <div class="route-line-box">
+                    <div class="route-dot"></div>
+                    <div class="route-dashed-line"></div>
+                </div>
+                <div class="route-text">🚆 捷運 飯店住宿 ➔ 世運主場館 • 約 25 分鐘</div>
+            </div>
+
             <div class="card">
                 <div class="time">下午 3:00 - 晚上 10:00</div>
-                <div class="title">🔥 [從住宿出發] BTS 演唱會 Day 3（高雄世運主場館）</div>
+                <div class="title">🔥 BTS 演唱會 Day 3（高雄世運主場館）</div>
                 <div class="tags">
                     <span class="tag purple">ARIRANG TOUR</span>
                     <span class="tag">主行程</span>
                 </div>
-                <div class="transit-box">
-                    🚗 <b>交通移動：</b>從住宿地點出發 ➔ 搭乘捷運紅線至「世運站」R17 出站（約 20-30 分鐘）<br>
-                    ✨ <b>備註：</b>享受最終場爆發的感動！
+                <p style="margin: 8px 0 0 0; color: #666; font-size: 14px;">享受最終場爆發的感動！✨</p>
+            </div>
+
+            <!-- 單條簡單交通說明 -->
+            <div class="route-connector">
+                <div class="route-line-box">
+                    <div class="route-dashed-line"></div>
+                    <div class="route-dot"></div>
+                    <div class="route-dashed-line"></div>
                 </div>
+                <div class="route-text">🚌 散場步行 ➔ 專車集合點 • 約 10 分鐘</div>
             </div>
 
             <div class="card">
@@ -418,9 +495,6 @@
                 <div class="tags">
                     <span class="tag">交通</span>
                     <span class="tag purple">返鄉直達車</span>
-                </div>
-                <div class="transit-box">
-                    🚗 <b>交通移動：</b>世運主場館散場 ➔ 前往專車集合點搭乘返鄉直達車
                 </div>
                 <p style="margin: 8px 0 0 0; color: #666; font-size: 14px;">滿載應援禮物與美好回憶搭乘返鄉專車順利賦歸！💜</p>
             </div>
@@ -434,7 +508,6 @@
             <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="checkCount">0/0</span>
         </div>
 
-        <!-- 大項目一：應援活動打卡 -->
         <div style="font-size: 18px; font-weight: bold; color: #333; margin: 15px 0 10px 0;">💜 應援活動打卡</div>
 
         <div class="section-title">📍 應援打卡點</div>
@@ -538,7 +611,6 @@
             </div>
         </div>
 
-        <!-- 大項目二：其他清單打卡 -->
         <div style="font-size: 18px; font-weight: bold; color: #333; margin: 30px 0 10px 0; border-top: 2px dashed #ccc; padding-top: 15px;">📌 其他清單打卡</div>
 
         <div class="section-title">🎡 觀光景點</div>
