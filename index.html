@@ -23,6 +23,10 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        html {
+            scroll-behavior: smooth; /* 平滑滾動效果 */
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-color);
@@ -115,7 +119,7 @@
 
         .header {
             background-color: #fff;
-            padding: 12px 15px 8px 15px;
+            padding: 14px 15px 10px 15px;
             text-align: center;
             border-bottom: 1px solid #e2e2e2;
             position: sticky;
@@ -130,22 +134,6 @@
             color: var(--purple-accent);
             margin: 0 0 10px 0;
             letter-spacing: 0.5px;
-        }
-
-        .action-btns {
-            display: flex;
-            justify-content: flex-end;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .btn {
-            padding: 5px 12px;
-            border: 1px solid #ccc;
-            background: #fff;
-            border-radius: 6px;
-            font-size: 12px;
-            cursor: pointer;
         }
 
         .day-nav {
@@ -179,6 +167,36 @@
             padding: 15px;
             max-width: 500px;
             margin: 0 auto;
+        }
+
+        /* 🚀 分類快速跳轉導航列列樣式 */
+        .quick-nav {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 4px 0 12px 0;
+            margin-bottom: 5px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .quick-nav-btn {
+            background: #fff;
+            border: 1px solid var(--purple-light);
+            color: var(--purple-accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            white-space: nowrap;
+            cursor: pointer;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+
+        .quick-nav-btn:active {
+            background: var(--purple-accent);
+            color: #fff;
+            transform: scale(0.96);
         }
 
         /* 行程卡片 */
@@ -266,6 +284,7 @@
             gap: 6px;
             border-bottom: 2px solid var(--purple-light);
             padding-bottom: 6px;
+            scroll-margin-top: 80px; /* 防止捲動時被頂部 Sticky Header 遮住 */
         }
         .section-title:first-child {
             margin-top: 0;
@@ -527,10 +546,6 @@
     <div id="main-app">
         <div class="header">
             <h1 class="main-title">💜 2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅 💜</h1>
-            <div class="action-btns">
-                <button class="btn" onclick="copySchedule()">複製行程</button>
-                <button class="btn" onclick="window.print()">存成 PDF</button>
-            </div>
             <div class="day-nav" id="dayNav">
                 <button class="day-btn active" onclick="switchDay(1)">Day 1<br><small>11/18</small></button>
                 <button class="day-btn" onclick="switchDay(2)">Day 2<br><small>11/19</small></button>
@@ -926,13 +941,19 @@
 
         <!-- 2. 活動打卡頁面區塊 -->
         <div class="container hidden" id="activitiesView">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                 <h3 style="margin: 0;">💜 活動打卡清單</h3>
                 <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="checkCount">0/0</span>
             </div>
 
+            <!-- 🚀 活動打卡快速跳轉按鈕 -->
+            <div class="quick-nav">
+                <button class="quick-nav-btn" onclick="scrollToSection('act-sec-1')">📍 應援打卡點</button>
+                <button class="quick-nav-btn" onclick="scrollToSection('act-sec-2')">☕ 應援咖啡廳</button>
+            </div>
+
             <!-- 分類一：應援打卡點 -->
-            <div class="section-title">📍 應援打卡點</div>
+            <div class="section-title" id="act-sec-1">📍 應援打卡點</div>
 
             <div class="checklist-card open" data-start="2026-11-15" data-end="2026-11-22" onclick="toggleCard(this, event)">
                 <div class="checklist-header">
@@ -975,7 +996,7 @@
             </div>
 
             <!-- 分類二：應援咖啡廳 -->
-            <div class="section-title">☕ 應援咖啡廳</div>
+            <div class="section-title" id="act-sec-2">☕ 應援咖啡廳</div>
 
             <div class="checklist-card open" data-start="2026-11-18" data-end="2026-11-21" onclick="toggleCard(this, event)">
                 <div class="checklist-header">
@@ -1022,13 +1043,21 @@
 
         <!-- 3. 吃喝玩樂清單頁面區塊 -->
         <div class="container hidden" id="foodFunView">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                 <h3 style="margin: 0;">🍽️ 吃喝玩樂清單（純旅遊）</h3>
                 <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="foodFunCount">0/0</span>
             </div>
 
+            <!-- 🚀 吃喝玩樂快速跳轉按鈕 -->
+            <div class="quick-nav">
+                <button class="quick-nav-btn" onclick="scrollToSection('food-sec-1')">☕ 咖啡廳</button>
+                <button class="quick-nav-btn" onclick="scrollToSection('food-sec-2')">🍲 鹹食類</button>
+                <button class="quick-nav-btn" onclick="scrollToSection('food-sec-3')">🖼️ 展覽與景點</button>
+                <button class="quick-nav-btn" onclick="scrollToSection('food-sec-4')">🍻 喝酒</button>
+            </div>
+
             <!-- 分類一：咖啡廳 -->
-            <div class="section-title">☕ 咖啡廳</div>
+            <div class="section-title" id="food-sec-1">☕ 咖啡廳</div>
 
             <div class="checklist-card open" onclick="toggleCard(this, event)">
                 <div class="checklist-header">
@@ -1073,7 +1102,7 @@
             </div>
 
             <!-- 分類二：鹹食類 -->
-            <div class="section-title">🍲 鹹食類</div>
+            <div class="section-title" id="food-sec-2">🍲 鹹食類</div>
 
             <div class="checklist-card open" onclick="toggleCard(this, event)">
                 <div class="checklist-header">
@@ -1117,51 +1146,32 @@
                 </div>
             </div>
 
-            <!-- 分類三：展覽項目 (新增範例) -->
-            <div class="section-title">🖼️ 展覽與景點</div>
+            <!-- 分類三：展覽與景點 -->
+            <div class="section-title" id="food-sec-3">🖼️ 展覽與景點</div>
 
             <div class="checklist-card open" onclick="toggleCard(this, event)">
                 <div class="checklist-header">
                     <input type="checkbox" onclick="handleCheckboxClick(this, event)">
                     <div class="checklist-title-box">
-                        <div class="checklist-title">高雄市立美術館</div>
-                        <div class="checklist-meta"><span>🎨 麥可．克雷格-馬丁：日常・解碼 特展</span></div>
+                        <div class="checklist-title">高雄市立美術館特展</div>
+                        <div class="checklist-meta"><span>🎨 藝文特展巡禮</span></div>
                     </div>
                     <span class="arrow-icon">▼</span>
                 </div>
                 <div class="checklist-details">
                     <div class="image-gallery">
-                        <img src="日常・解碼 麥可·克雷格－馬丁特展.jpg" class="gallery-thumb" onclick="openGallery(this, 0)">
-                        <img src="日常・解碼2.jpg" class="gallery-thumb" onclick="openGallery(this, 1)">
-                        <img src="日常・解碼3.jpg" class="gallery-thumb" onclick="openGallery(this, 2)">
+                        <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 0)">
+                        <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 1)">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 2)">
                     </div>
-                    <div class="detail-row"><span class="detail-label">📍 地址位置：</span>高雄市鼓山區美術館路 80 號 (展覽參觀入口近美術東二路)</div>
+                    <div class="detail-row"><span class="detail-label">📍 地址位置：</span>高雄市鼓山區美術館路 80 號</div>
                     <div class="detail-row"><span class="detail-label">⏰ 營業時間：</span>09:30 - 17:30（週一休館）</div>
-                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>全票：380元</div>
-                </div>
-            </div>
-
-            <div class="checklist-card open" onclick="toggleCard(this, event)">
-                <div class="checklist-header">
-                    <input type="checkbox" onclick="handleCheckboxClick(this, event)">
-                    <div class="checklist-title-box">
-                        <div class="checklist-title">金馬賓館當代美術館</div>
-                        <div class="checklist-meta"><span>🎨 存在的手勢 特展</span></div>
-                    </div>
-                    <span class="arrow-icon">▼</span>
-                </div>
-                <div class="checklist-details">
-                    <div class="image-gallery">
-                        <img src="存在的手勢.png" class="gallery-thumb" onclick="openGallery(this, 0)">
-                    </div>
-                    <div class="detail-row"><span class="detail-label">📍 地址位置：</span>高雄市鼓山區鼓山一路111號</div>
-                    <div class="detail-row"><span class="detail-label">⏰ 營業時間：</span>10:00 - 18:00（週一休館）</div>
-                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>全票：180元</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>適合下午輕鬆逛展拍照，感受藝術氛圍。</div>
                 </div>
             </div>
 
             <!-- 分類四：喝酒 -->
-            <div class="section-title">🍻 喝酒</div>
+            <div class="section-title" id="food-sec-4">🍻 喝酒</div>
 
             <div class="checklist-card open" onclick="toggleCard(this, event)">
                 <div class="checklist-header">
@@ -1295,24 +1305,31 @@
                 dayNav.classList.add('hidden');
                 tabFoodFun.classList.add('active');
             }
+            window.scrollTo(0, 0); // 切換頁籤時回到頂部
+        }
+
+        // 🚀 快速跳轉至指定的分類區塊
+        function scrollToSection(sectionId) {
+            var target = document.getElementById(sectionId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         function toggleCard(cardElement, event) {
-            // 點擊 checkbox 或圖片時不觸發卡片手動收合/展開
             if (event.target.tagName === 'INPUT' || event.target.tagName === 'IMG') return;
             cardElement.classList.toggle('open');
         }
 
-        // 🌟 打勾完成後自動收合卡片 (移除 open class)
         function handleCheckboxClick(checkbox, event) {
             event.stopPropagation();
             var card = checkbox.closest('.checklist-card');
             if (checkbox.checked) {
                 card.classList.add('completed');
-                card.classList.remove('open'); // 勾選完成：自動收合到只剩下標題
+                card.classList.remove('open');
             } else {
                 card.classList.remove('completed');
-                card.classList.add('open');    // 取消勾選：自動展開細節
+                card.classList.add('open');
             }
             updateActivityCount();
             updateFoodFunCount();
@@ -1367,12 +1384,7 @@
             document.getElementById('foodFunCount').innerText = checked + '/' + checkboxes.length;
         }
 
-        function copySchedule() {
-            navigator.clipboard.writeText("2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅💜");
-            alert("行程標題已複製到剪貼簿！");
-        }
-
-        /* 🖼️ 大圖燈箱 Lightbox 功能與左右切換 */
+        /* 🖼️ 大圖燈箱 Lightbox 功能 */
         var currentGalleryImages = [];
         var currentGalleryIndex = 0;
 
