@@ -282,7 +282,7 @@
             transition: all 0.3s ease;
         }
 
-        /* 完成打卡時的樣式：淡化 */
+        /* 完成打卡時的樣式：淡化與刪除線 */
         .checklist-card.completed {
             opacity: 0.55;
             background-color: #f9f9f9;
@@ -345,11 +345,8 @@
             color: #999;
             transition: transform 0.2s ease;
         }
-        .checklist-card.open .arrow-icon {
-            transform: rotate(180deg);
-        }
 
-        /* 預設展開內容的細節區塊 */
+        /* 預設隱藏 details 區塊，當卡片有 .open 時顯示 */
         .checklist-details {
             display: none;
             padding: 12px 14px 14px 14px;
@@ -359,8 +356,13 @@
             color: #444;
             line-height: 1.6;
         }
+
         .checklist-card.open .checklist-details {
             display: block;
+        }
+
+        .checklist-card.open .arrow-icon {
+            transform: rotate(180deg);
         }
 
         /* 單張圖片樣式 */
@@ -922,14 +924,14 @@
             </div>
         </div>
 
-        <!-- 2. 活動打卡頁面區塊 (分成應援打卡點、應援咖啡廳兩類，各2個範例) -->
+        <!-- 2. 活動打卡頁面區塊 -->
         <div class="container hidden" id="activitiesView">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <h3 style="margin: 0;">💜 活動打卡清單</h3>
                 <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="checkCount">0/0</span>
             </div>
 
-            <!-- 分類一：應援打卡點 (2個範例) -->
+            <!-- 分類一：應援打卡點 -->
             <div class="section-title">📍 應援打卡點</div>
 
             <div class="checklist-card open" data-start="2026-11-15" data-end="2026-11-22" onclick="toggleCard(this, event)">
@@ -972,7 +974,7 @@
                 </div>
             </div>
 
-            <!-- 分類二：應援咖啡廳 (2個範例) -->
+            <!-- 分類二：應援咖啡廳 -->
             <div class="section-title">☕ 應援咖啡廳</div>
 
             <div class="checklist-card open" data-start="2026-11-18" data-end="2026-11-21" onclick="toggleCard(this, event)">
@@ -1018,14 +1020,14 @@
             </div>
         </div>
 
-        <!-- 3. 吃喝玩樂清單頁面區塊 (純旅遊，三大類各2個範例，每個地點配備3張相片藝廊與燈箱) -->
+        <!-- 3. 吃喝玩樂清單頁面區塊 (支援點擊標題收合/展開、勾選完成、營業時間與備註) -->
         <div class="container hidden" id="foodFunView">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <h3 style="margin: 0;">🍽️ 吃喝玩樂清單（純旅遊）</h3>
                 <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="foodFunCount">0/0</span>
             </div>
 
-            <!-- 分類一：咖啡廳 (2個範例) -->
+            <!-- 分類一：咖啡廳 (可點擊收合/展開) -->
             <div class="section-title">☕ 咖啡廳</div>
 
             <div class="checklist-card open" onclick="toggleCard(this, event)">
@@ -1038,14 +1040,14 @@
                     <span class="arrow-icon">▼</span>
                 </div>
                 <div class="checklist-details">
-                    <!-- 3張圖片藝廊 -->
                     <div class="image-gallery">
                         <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 0)">
                         <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 1)">
                         <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 2)">
                     </div>
-                    <div class="detail-row"><span class="detail-label">📍 地址：</span>高雄市鼓山區蓬萊路 6 號</div>
-                    <div class="detail-row"><span class="detail-label">💡 推薦：</span>極致海景第一排，享受微風與精釀手沖咖啡！</div>
+                    <div class="detail-row"><span class="detail-label">📍 地址位置：</span>高雄市鼓山區蓬萊路 6 號</div>
+                    <div class="detail-row"><span class="detail-label">⏰ 營業時間：</span>12:00 - 24:00</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>極致海景第一排，享受微風與精釀手沖咖啡！建議夕陽時段前往。</div>
                 </div>
             </div>
 
@@ -1064,12 +1066,13 @@
                         <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 1)">
                         <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 2)">
                     </div>
-                    <div class="detail-row"><span class="detail-label">📍 地址：</span>高雄市鹽埕區瀨南街 xx 號</div>
-                    <div class="detail-row"><span class="detail-label">💡 推薦：</span>招牌巴斯克乳酪蛋糕、手沖單品咖啡。</div>
+                    <div class="detail-row"><span class="detail-label">📍 地址位置：</span>高雄市鹽埕區瀨南街 xx 號</div>
+                    <div class="detail-row"><span class="detail-label">⏰ 營業時間：</span>13:00 - 19:00（週一公休）</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>招牌巴斯克乳酪蛋糕必點，座位較少不可預約需現場候位。</div>
                 </div>
             </div>
 
-            <!-- 分類二：鹹食類 (2個範例) -->
+            <!-- 分類二：鹹食類 (可點擊收合/展開) -->
             <div class="section-title">🍲 鹹食類</div>
 
             <div class="checklist-card open" onclick="toggleCard(this, event)">
@@ -1087,8 +1090,9 @@
                         <img src="https://images.unsplash.com/photo-1558030006-450675393462?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 1)">
                         <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 2)">
                     </div>
-                    <div class="detail-row"><span class="detail-label">📍 地址：</span>高雄市前鎮區時代南二一路 88 號</div>
-                    <div class="detail-row"><span class="detail-label">💡 推薦：</span>極上和牛燒肉組合、石燒蒜蝦飯、水景建築夜景。</div>
+                    <div class="detail-row"><span class="detail-label">📍 地址位置：</span>高雄市前鎮區時代南二一路 88 號</div>
+                    <div class="detail-row"><span class="detail-label">⏰ 營業時間：</span>11:30 - 24:00</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>極上和牛燒肉組合與石燒蒜蝦飯超推！已預約 11/20 12:00 午餐。</div>
                 </div>
             </div>
 
@@ -1107,12 +1111,13 @@
                         <img src="https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 1)">
                         <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 2)">
                     </div>
-                    <div class="detail-row"><span class="detail-label">📍 地址：</span>高雄市鹽埕區五福四路 258 號</div>
-                    <div class="detail-row"><span class="detail-label">💡 推薦：</span>切盤鴨肉、鴨肉飯肉燥香濃、綜合下水湯。</div>
+                    <div class="detail-row"><span class="detail-label">📍 地址位置：</span>高雄市鹽埕區五福四路 258 號</div>
+                    <div class="detail-row"><span class="detail-label">⏰ 營業時間：</span>10:00 - 20:20（週二公休）</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>切盤鴨肉搭配特製沾醬超讚！排隊速度快，只收現金。</div>
                 </div>
             </div>
 
-            <!-- 分類三：喝酒 (2個範例) -->
+            <!-- 分類三：喝酒 (可點擊收合/展開) -->
             <div class="section-title">🍻 喝酒</div>
 
             <div class="checklist-card open" onclick="toggleCard(this, event)">
@@ -1130,8 +1135,9 @@
                         <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 1)">
                         <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 2)">
                     </div>
-                    <div class="detail-row"><span class="detail-label">📍 地址：</span>高雄市前金區五福三路 xx 號</div>
-                    <div class="detail-row"><span class="detail-label">💡 推薦：</span>特色水果調酒、高空愛河夜景景觀。</div>
+                    <div class="detail-row"><span class="detail-label">📍 地址位置：</span>高雄市前金區五福三路 xx 號</div>
+                    <div class="detail-row"><span class="detail-label">⏰ 營業時間：</span>19:00 - 02:00</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>特色水果特調調酒，氣氛浪漫，建議先於粉專或電話訂位。</div>
                 </div>
             </div>
 
@@ -1150,8 +1156,9 @@
                         <img src="https://images.unsplash.com/photo-1574096079513-d8259312b785?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 1)">
                         <img src="https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?w=500&auto=format&fit=crop" class="gallery-thumb" onclick="openGallery(this, 2)">
                     </div>
-                    <div class="detail-row"><span class="detail-label">📍 地址：</span>高雄市新興區中山一路 4 號（英迪格酒店頂樓）</div>
-                    <div class="detail-row"><span class="detail-label">💡 推薦：</span>高雄最美戶外高空 Bar，演唱會後放鬆首選！</div>
+                    <div class="detail-row"><span class="detail-label">📍 地址位置：</span>高雄市新興區中山一路 4 號（英迪格酒店頂樓）</div>
+                    <div class="detail-row"><span class="detail-label">⏰ 營業時間：</span>18:00 - 01:00</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>高雄最熱門高空戶外酒吧，視野極佳，演唱會後放鬆小酌首選！</div>
                 </div>
             </div>
         </div>
@@ -1248,7 +1255,7 @@
         }
 
         function toggleCard(cardElement, event) {
-            // 點擊 checkbox 或圖片時不觸發卡片收合
+            // 點擊 checkbox 或圖片時不觸發卡片收合/展開
             if (event.target.tagName === 'INPUT' || event.target.tagName === 'IMG') return;
             cardElement.classList.toggle('open');
         }
