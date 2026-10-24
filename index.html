@@ -363,7 +363,6 @@
             display: block;
         }
 
-        /* 活動圖片樣式 */
         .event-img {
             width: 100%;
             max-height: 220px;
@@ -377,7 +376,7 @@
         .detail-row:last-child { margin-bottom: 0; }
         .detail-label { font-weight: bold; color: var(--purple-accent); }
 
-        /* 底部導覽頁籤 */
+        /* 底部導覽頁籤 (3個頁籤平均分配) */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -832,7 +831,7 @@
                 <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="checkCount">0/0</span>
             </div>
 
-            <!-- 📍 應援打卡點區塊 (加上 class "open" 設為預設展開) -->
+            <!-- 📍 應援打卡點區塊 -->
             <div class="section-title">📍 應援打卡點</div>
 
             <div class="checklist-card open" data-start="2026-11-15" data-end="2026-11-22" onclick="toggleCard(this, event)">
@@ -868,200 +867,232 @@
                     <span class="arrow-icon">▼</span>
                 </div>
                 <div class="checklist-details">
-                    <img src="https://images.unsplash.com/photo-1531058020387-3be344556be6?w=600&auto=format&fit=crop" alt="LOVE QUEST 展覽" class="event-img">
                     <div class="detail-row"><span class="detail-label">📅 活動日期：</span>2026/11/19 - 11/20（11:00 - 18:00）</div>
                     <div class="detail-row"><span class="detail-label">📍 地點位置：</span>駁二藝術特區 大義倉庫 C8-1</div>
-                    <div class="detail-row"><span class="detail-label">🎁 發放物料：</span>入場即贈限量導覽冊與紀念門票</div>
-                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>已預約 11/19 14:00 場次，現場需出示預約 QR Code。</div>
-                </div>
-            </div>
-
-            <div class="checklist-card open" data-start="2026-11-01" data-end="2026-11-30" onclick="toggleCard(this, event)">
-                <div class="checklist-header">
-                    <input type="checkbox" onclick="handleCheckboxClick(this, event)">
-                    <div class="checklist-title-box">
-                        <div class="checklist-title">LADOR 快閃店</div>
-                        <div class="checklist-meta">
-                            <span>💄 品牌快閃店</span>
-                            <span class="status-badge">計算中...</span>
-                        </div>
-                    </div>
-                    <span class="arrow-icon">▼</span>
-                </div>
-                <div class="checklist-details">
-                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop" alt="LADOR 快閃店" class="event-img">
-                    <div class="detail-row"><span class="detail-label">📅 活動日期：</span>2026/11/01 - 11/30（11:00 - 22:00）</div>
-                    <div class="detail-row"><span class="detail-label">📍 地點位置：</span>高雄漢神巨蛋購物廣場 1F</div>
-                    <div class="detail-row"><span class="detail-label">🎁 發放物料：</span>打卡送代言人專屬小卡組與試用包</div>
-                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>消費滿額可抽取限量周邊禮盒。</div>
-                </div>
-            </div>
-
-            <!-- ☕ 應援咖啡廳區塊 (預設展開) -->
-            <div class="section-title">☕ 應援咖啡廳</div>
-
-            <div class="checklist-card open" data-start="2026-11-18" data-end="2026-11-21" onclick="toggleCard(this, event)">
-                <div class="checklist-header">
-                    <input type="checkbox" onclick="handleCheckboxClick(this, event)">
-                    <div class="checklist-title-box">
-                        <div class="checklist-title">Compose Coffee 應援旗店</div>
-                        <div class="checklist-meta">
-                            <span>☕ 應援咖啡廳</span>
-                            <span class="status-badge">計算中...</span>
-                        </div>
-                    </div>
-                    <span class="arrow-icon">▼</span>
-                </div>
-                <div class="checklist-details">
-                    <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&auto=format&fit=crop" alt="Compose Coffee" class="event-img">
-                    <div class="detail-row"><span class="detail-label">📅 活動日期：</span>2026/11/18 - 11/21（10:00 - 20:00）</div>
-                    <div class="detail-row"><span class="detail-label">📍 地點位置：</span>高雄市鹽埕區五福四路 xx 號</div>
-                    <div class="detail-row"><span class="detail-label">🎁 發放物料：</span>消費特調飲品送限量杯套、透卡、明信片組</div>
-                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>每日限量 100 份，建議中午前抵達排隊。</div>
-                </div>
-            </div>
-
-            <div class="checklist-card open" data-start="2026-11-18" data-end="2026-11-22" onclick="toggleCard(this, event)">
-                <div class="checklist-header">
-                    <input type="checkbox" onclick="handleCheckboxClick(this, event)">
-                    <div class="checklist-title-box">
-                        <div class="checklist-title">ETHEREAL 高雄應援咖啡廳</div>
-                        <div class="checklist-meta">
-                            <span>☕ 應援咖啡廳</span>
-                            <span class="status-badge">計算中...</span>
-                        </div>
-                    </div>
-                    <span class="arrow-icon">▼</span>
-                </div>
-                <div class="checklist-details">
-                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&auto=format&fit=crop" alt="ETHEREAL 咖啡廳" class="event-img">
-                    <div class="detail-row"><span class="detail-label">📅 活動日期：</span>2026/11/18 - 11/22（11:00 - 19:00）</div>
-                    <div class="detail-row"><span class="detail-label">📍 地點位置：</span>高雄市新興區 xx 路 xx 號</div>
-                    <div class="detail-row"><span class="detail-label">🎁 發放物料：</span>點購特定套餐送成員生日相框卡片、貼紙包</div>
-                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>需現場發號碼牌候位，店內低消為一杯飲品。</div>
+                    <div class="detail-row"><span class="detail-label">📝 備註事項：</span>已預約 11/19 14:00 場次，需出示預約 QR code 入場。</div>
                 </div>
             </div>
         </div>
 
-        <!-- 📱 底部頁籤導覽列 -->
+        <!-- 3. 吃喝玩樂清單頁面區塊 (純旅遊) -->
+        <div class="container hidden" id="foodFunView">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="margin: 0;">🍽️ 吃喝玩樂清單（純旅遊）</h3>
+                <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="foodFunCount">0/0</span>
+            </div>
+
+            <!-- 分類一：咖啡廳 -->
+            <div class="section-title">☕ 咖啡廳</div>
+
+            <div class="checklist-card open" onclick="toggleCard(this, event)">
+                <div class="checklist-header">
+                    <input type="checkbox" onclick="handleCheckboxClick(this, event)">
+                    <div class="checklist-title-box">
+                        <div class="checklist-title">待增設咖啡廳 (點擊編輯)</div>
+                        <div class="checklist-meta"><span>☕ 特色咖啡 / 甜點</span></div>
+                    </div>
+                    <span class="arrow-icon">▼</span>
+                </div>
+                <div class="checklist-details">
+                    <div class="detail-row"><span class="detail-label">📍 地址：</span>高雄市 xx 區 xx 路</div>
+                    <div class="detail-row"><span class="detail-label">📝 筆記：</span>可填寫想去的特色咖啡廳或必點甜點。</div>
+                </div>
+            </div>
+
+            <!-- 分類二：鹹食類 -->
+            <div class="section-title">🍲 鹹食類</div>
+
+            <div class="checklist-card open" onclick="toggleCard(this, event)">
+                <div class="checklist-header">
+                    <input type="checkbox" onclick="handleCheckboxClick(this, event)">
+                    <div class="checklist-title-box">
+                        <div class="checklist-title">待增設鹹食餐廳 (點擊編輯)</div>
+                        <div class="checklist-meta"><span>🍜 在地小吃 / 餐廳</span></div>
+                    </div>
+                    <span class="arrow-icon">▼</span>
+                </div>
+                <div class="checklist-details">
+                    <div class="detail-row"><span class="detail-label">📍 地址：</span>高雄市 xx 區 xx 路</div>
+                    <div class="detail-row"><span class="detail-label">📝 筆記：</span>可填寫想念的高雄美食、小吃或正餐。</div>
+                </div>
+            </div>
+
+            <!-- 分類三：喝酒 -->
+            <div class="section-title">🍻 喝酒</div>
+
+            <div class="checklist-card open" onclick="toggleCard(this, event)">
+                <div class="checklist-header">
+                    <input type="checkbox" onclick="handleCheckboxClick(this, event)">
+                    <div class="checklist-title-box">
+                        <div class="checklist-title">待增設酒吧 / 小酌地點 (點擊編輯)</div>
+                        <div class="checklist-meta"><span>🍸 酒吧 / 質感小酒館</span></div>
+                    </div>
+                    <span class="arrow-icon">▼</span>
+                </div>
+                <div class="checklist-details">
+                    <div class="detail-row"><span class="detail-label">📍 地址：</span>高雄市 xx 區 xx 路</div>
+                    <div class="detail-row"><span class="detail-label">📝 筆記：</span>演唱會結束後放鬆小酌的口袋名單！</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部導覽頁籤 (調整為3個按鈕) -->
         <div class="bottom-nav">
-            <button class="nav-tab-btn active" id="tab-schedule" onclick="switchMainTab('schedule')">
-                <span style="font-size: 18px;">🗓️</span>
+            <button class="nav-tab-btn active" id="tabSchedule" onclick="showTab('schedule')">
+                <span style="font-size: 16px;">📅</span>
                 <span>行程規劃</span>
             </button>
-            <button class="nav-tab-btn" id="tab-activities" onclick="switchMainTab('activities')">
-                <span style="font-size: 18px;">📍</span>
+            <button class="nav-tab-btn" id="tabActivities" onclick="showTab('activities')">
+                <span style="font-size: 16px;">💜</span>
                 <span>活動打卡</span>
+            </button>
+            <button class="nav-tab-btn" id="tabFoodFun" onclick="showTab('foodFun')">
+                <span style="font-size: 16px;">🍽️</span>
+                <span>吃喝玩樂</span>
             </button>
         </div>
     </div>
 
     <script>
-        // 🔐 密碼驗證邏輯
+        // 🔒 密碼驗證邏輯
         function verifyPassword() {
-            const myPassword = "jjjj";
-            const entered = document.getElementById("passwordInput").value;
-
-            if (entered === myPassword) {
-                document.getElementById("login-overlay").style.display = "none";
-                document.getElementById("main-app").style.display = "block";
-                updateActivityStatuses();
-                updateActivityCount();
+            var inputVal = document.getElementById('passwordInput').value;
+            // 預設密碼設定為 1118，可自行修改
+            if (inputVal === '1118') {
+                document.getElementById('login-overlay').style.display = 'none';
+                document.getElementById('main-app').style.display = 'block';
+                initApp();
             } else {
-                document.getElementById("error-msg").style.display = "block";
-                document.getElementById("passwordInput").value = "";
+                var err = document.getElementById('error-msg');
+                err.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
             }
         }
 
-        // 🗓️ 行程天數切換
-        function switchDay(dayNum) {
-            document.querySelectorAll('.day-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.day-btn').forEach(el => el.classList.remove('active'));
-            
-            document.getElementById(`day${dayNum}-content`).classList.remove('hidden');
-            event.currentTarget.classList.add('active');
+        function switchDay(day) {
+            var btns = document.querySelectorAll('.day-btn');
+            for (var i = 0; i < btns.length; i++) {
+                if (i === (day - 1)) btns[i].classList.add('active');
+                else btns[i].classList.remove('active');
+            }
+
+            var contents = document.querySelectorAll('.day-content');
+            for (var j = 0; j < contents.length; j++) {
+                contents[j].classList.add('hidden');
+            }
+
+            var target = document.getElementById('day' + day + '-content');
+            if (target) target.classList.remove('hidden');
         }
 
-        // 📱 底部主選單切換（行程 vs 活動）
-        function switchMainTab(tabName) {
-            const scheduleView = document.getElementById('scheduleView');
-            const activitiesView = document.getElementById('activitiesView');
-            const dayNav = document.getElementById('dayNav');
-            const tabSchedule = document.getElementById('tab-schedule');
-            const tabActivities = document.getElementById('tab-activities');
+        function showTab(tab) {
+            var scheduleView = document.getElementById('scheduleView');
+            var activitiesView = document.getElementById('activitiesView');
+            var foodFunView = document.getElementById('foodFunView');
+            var dayNav = document.getElementById('dayNav');
+            
+            var tabSchedule = document.getElementById('tabSchedule');
+            var tabActivities = document.getElementById('tabActivities');
+            var tabFoodFun = document.getElementById('tabFoodFun');
 
-            if (tabName === 'schedule') {
+            scheduleView.classList.add('hidden');
+            activitiesView.classList.add('hidden');
+            foodFunView.classList.add('hidden');
+            
+            tabSchedule.classList.remove('active');
+            tabActivities.classList.remove('active');
+            tabFoodFun.classList.remove('active');
+
+            if (tab === 'schedule') {
                 scheduleView.classList.remove('hidden');
-                activitiesView.classList.add('hidden');
                 dayNav.classList.remove('hidden');
                 tabSchedule.classList.add('active');
-                tabActivities.classList.remove('active');
-            } else {
-                scheduleView.classList.add('hidden');
+            } else if (tab === 'activities') {
                 activitiesView.classList.remove('hidden');
                 dayNav.classList.add('hidden');
-                tabSchedule.classList.remove('active');
                 tabActivities.classList.add('active');
+            } else if (tab === 'foodFun') {
+                foodFunView.classList.remove('hidden');
+                dayNav.classList.add('hidden');
+                tabFoodFun.classList.add('active');
             }
         }
 
-        // 📍 活動卡片點擊展開/收合
         function toggleCard(cardElement, event) {
+            if (event.target.tagName === 'INPUT') return;
             cardElement.classList.toggle('open');
         }
 
-        // ✍️ 勾選打卡方塊的互動行為（勾選 -> 自動收合並淡化 / 取消勾選 -> 自動展開）
         function handleCheckboxClick(checkbox, event) {
-            event.stopPropagation(); // 阻止冒泡避免觸發 toggleCard
-            const card = checkbox.closest('.checklist-card');
-            
+            event.stopPropagation();
+            var card = checkbox.closest('.checklist-card');
             if (checkbox.checked) {
-                card.classList.remove('open'); // 自動收合細節
-                card.classList.add('completed'); // 加入完成狀態 (劃線、淡化)
+                card.classList.add('completed');
             } else {
-                card.classList.add('open'); // 取消打勾時自動展開
                 card.classList.remove('completed');
             }
             updateActivityCount();
+            updateFoodFunCount();
         }
 
-        // 📊 更新打卡數量統計
-        function updateActivityCount() {
-            const checkboxes = document.querySelectorAll('#activitiesView input[type="checkbox"]');
-            const checked = document.querySelectorAll('#activitiesView input[type="checkbox"]:checked');
-            const countDisplay = document.getElementById('checkCount');
-            if(countDisplay) {
-                countDisplay.innerText = `${checked.length}/${checkboxes.length}`;
+        function updateStatuses() {
+            var today = new Date();
+            today.setHours(0,0,0,0);
+
+            var cards = document.querySelectorAll('#activitiesView .checklist-card');
+            for (var i = 0; i < cards.length; i++) {
+                var card = cards[i];
+                var startStr = card.getAttribute('data-start');
+                var endStr = card.getAttribute('data-end');
+                var badge = card.querySelector('.status-badge');
+
+                if (startStr && endStr && badge) {
+                    var startDate = new Date(startStr);
+                    var endDate = new Date(endStr);
+                    startDate.setHours(0,0,0,0);
+                    endDate.setHours(23,59,59,999);
+
+                    if (today < startDate) {
+                        badge.innerText = '未開始';
+                        badge.className = 'status-badge upcoming';
+                    } else if (today >= startDate && today <= endDate) {
+                        badge.innerText = '進行中';
+                        badge.className = 'status-badge active';
+                    } else {
+                        badge.innerText = '已結束';
+                        badge.className = 'status-badge ended';
+                    }
+                }
             }
         }
 
-        // ⏳ 自動計算活動狀態標籤 (未開始 / 進行中 / 已結束)
-        function updateActivityStatuses() {
-            const todayStr = new Date().toISOString().split('T')[0];
-            const cards = document.querySelectorAll('.checklist-card');
+        function updateActivityCount() {
+            var checkboxes = document.querySelectorAll('#activitiesView input[type="checkbox"]');
+            var checked = 0;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) checked++;
+            }
+            document.getElementById('checkCount').innerText = checked + '/' + checkboxes.length;
+        }
 
-            cards.forEach(card => {
-                const start = card.getAttribute('data-start');
-                const end = card.getAttribute('data-end');
-                const badge = card.querySelector('.status-badge');
-
-                if (badge && start && end) {
-                    if (todayStr < start) {
-                        badge.innerText = "未開始";
-                        badge.className = "status-badge upcoming";
-                    } else if (todayStr >= start && todayStr <= end) {
-                        badge.innerText = "進行中";
-                        badge.className = "status-badge active";
-                    } else {
-                        badge.innerText = "已結束";
-                        badge.className = "status-badge ended";
-                    }
-                }
-            });
+        function updateFoodFunCount() {
+            var checkboxes = document.querySelectorAll('#foodFunView input[type="checkbox"]');
+            var checked = 0;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) checked++;
+            }
+            document.getElementById('foodFunCount').innerText = checked + '/' + checkboxes.length;
         }
 
         function copySchedule() {
-            alert("行程已複製！");
+            navigator.clipboard.writeText("2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅💜");
+            alert("行程標題已複製到剪貼簿！");
+        }
+
+        function initApp() {
+            updateStatuses();
+            updateActivityCount();
+            updateFoodFunCount();
         }
     </script>
 </body>
