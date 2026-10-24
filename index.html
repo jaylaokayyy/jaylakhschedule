@@ -1020,14 +1020,14 @@
             </div>
         </div>
 
-        <!-- 3. 吃喝玩樂清單頁面區塊 (支援點擊標題收合/展開、勾選完成、營業時間與備註) -->
+        <!-- 3. 吃喝玩樂清單頁面區塊 -->
         <div class="container hidden" id="foodFunView">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                 <h3 style="margin: 0;">🍽️ 吃喝玩樂清單（純旅遊）</h3>
                 <span style="font-size: 14px; font-weight: bold; color: var(--purple-accent);" id="foodFunCount">0/0</span>
             </div>
 
-            <!-- 分類一：咖啡廳 (可點擊收合/展開) -->
+            <!-- 分類一：咖啡廳 -->
             <div class="section-title">☕ 咖啡廳</div>
 
             <div class="checklist-card open" onclick="toggleCard(this, event)">
@@ -1072,7 +1072,7 @@
                 </div>
             </div>
 
-            <!-- 分類二：鹹食類 (可點擊收合/展開) -->
+            <!-- 分類二：鹹食類 -->
             <div class="section-title">🍲 鹹食類</div>
 
             <div class="checklist-card open" onclick="toggleCard(this, event)">
@@ -1117,7 +1117,7 @@
                 </div>
             </div>
 
-            <!-- 分類三：喝酒 (可點擊收合/展開) -->
+            <!-- 分類三：喝酒 -->
             <div class="section-title">🍻 喝酒</div>
 
             <div class="checklist-card open" onclick="toggleCard(this, event)">
@@ -1255,18 +1255,21 @@
         }
 
         function toggleCard(cardElement, event) {
-            // 點擊 checkbox 或圖片時不觸發卡片收合/展開
+            // 點擊 checkbox 或圖片時不觸發卡片手動收合/展開
             if (event.target.tagName === 'INPUT' || event.target.tagName === 'IMG') return;
             cardElement.classList.toggle('open');
         }
 
+        // 🌟 打勾完成後自動收合卡片 (移除 open class)
         function handleCheckboxClick(checkbox, event) {
             event.stopPropagation();
             var card = checkbox.closest('.checklist-card');
             if (checkbox.checked) {
                 card.classList.add('completed');
+                card.classList.remove('open'); // 勾選完成：自動收合到只剩下標題
             } else {
                 card.classList.remove('completed');
+                card.classList.add('open');    // 取消勾選：自動展開細節
             }
             updateActivityCount();
             updateFoodFunCount();
