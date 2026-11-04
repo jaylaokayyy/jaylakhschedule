@@ -24,7 +24,7 @@
         }
 
         html {
-            scroll-behavior: smooth; /* 平滑滾動效果 */
+            scroll-behavior: smooth;
         }
 
         body {
@@ -33,7 +33,7 @@
             color: #333;
             margin: 0;
             padding: 0;
-            padding-bottom: 80px;
+            padding-bottom: 80px; /* 留出底部導航列空間 */
         }
 
         /* 🔒 密碼登入畫面樣式 */
@@ -172,10 +172,10 @@
             transition: max-width 0.3s ease;
         }
 
-        /* 🚀 電腦版響應式全螢幕與多欄佈局適配 */
+        /* 🚀 電腦版響應式適配 */
         @media (min-width: 768px) {
             .container {
-                max-width: 1200px; /* 電腦版放寬至 full-width 滿版視野 */
+                max-width: 1200px;
                 padding: 30px;
             }
             .header {
@@ -188,7 +188,7 @@
                 font-size: 14px;
                 padding: 8px 0;
             }
-            /* 打卡區塊：電腦瀏覽時自動變成九宮格 (3欄 Grid) */
+            /* 電腦版打卡清單切換為九宮格 */
             .checklist-grid-container {
                 display: grid !important;
                 grid-template-columns: repeat(3, 1fr) !important;
@@ -196,38 +196,7 @@
             }
             .checklist-grid-container .checklist-card {
                 margin-bottom: 0 !important;
-                height: 100%;
             }
-        }
-
-        /* 🚀 分類快速跳轉導航列樣式 */
-        .quick-nav {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding: 4px 0 12px 0;
-            margin-bottom: 5px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .quick-nav-btn {
-            background: #fff;
-            border: 1px solid var(--purple-light);
-            color: var(--purple-accent);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-            white-space: nowrap;
-            cursor: pointer;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-            transition: all 0.2s ease;
-        }
-
-        .quick-nav-btn:active {
-            background: var(--purple-accent);
-            color: #fff;
-            transform: scale(0.96);
         }
 
         /* 行程卡片 */
@@ -306,19 +275,15 @@
 
         /* 大分類標題 */
         .section-title {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
             color: var(--purple-accent);
-            margin: 20px 0 10px 0;
+            margin: 10px 0 16px 0;
             display: flex;
             align-items: center;
             gap: 6px;
             border-bottom: 2px solid var(--purple-light);
-            padding-bottom: 6px;
-            scroll-margin-top: 80px;
-        }
-        .section-title:first-child {
-            margin-top: 0;
+            padding-bottom: 8px;
         }
 
         /* 打卡卡片樣式 */
@@ -413,114 +378,11 @@
             transform: rotate(180deg);
         }
 
-        .single-img {
-            width: 100%;
-            max-height: 220px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .gallery-thumb {
-            width: 100%;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 6px;
-            cursor: pointer;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-            transition: transform 0.15s ease;
-        }
-
-        .gallery-thumb:active {
-            transform: scale(0.96);
-        }
-
         .detail-row { margin-bottom: 6px; }
         .detail-row:last-child { margin-bottom: 0; }
         .detail-label { font-weight: bold; color: var(--purple-accent); }
 
-        .lightbox-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-        }
-
-        .lightbox-overlay.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 80vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox-img {
-            max-width: 100%;
-            max-height: 80vh;
-            border-radius: 8px;
-            object-fit: contain;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -45px;
-            right: 0;
-            color: #fff;
-            font-size: 32px;
-            cursor: pointer;
-            font-weight: bold;
-            line-height: 1;
-            padding: 5px;
-        }
-
-        .lightbox-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.25);
-            color: white;
-            border: none;
-            font-size: 24px;
-            padding: 12px 16px;
-            cursor: pointer;
-            border-radius: 50%;
-            user-select: none;
-            transition: background 0.2s;
-        }
-
-        .lightbox-btn:hover, .lightbox-btn:active {
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-        .lightbox-prev { left: -50px; }
-        .lightbox-next { right: -50px; }
-
-        @media (max-width: 600px) {
-            .lightbox-prev { left: 5px; background: rgba(0,0,0,0.5); }
-            .lightbox-next { right: 5px; background: rgba(0,0,0,0.5); }
-        }
-
+        /* 📱 底部切換導航列 */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -531,6 +393,7 @@
             display: flex;
             border-top: 1px solid #ddd;
             z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
         }
 
         .nav-tab-btn {
@@ -539,16 +402,18 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            color: #666;
+            font-size: 13px;
+            color: #777;
             cursor: pointer;
             background: none;
             border: none;
+            font-weight: bold;
+            transition: all 0.2s;
         }
 
         .nav-tab-btn.active {
             color: var(--purple-accent);
-            font-weight: bold;
+            background-color: #f9f5ff;
         }
 
         .hidden { display: none !important; }
@@ -569,7 +434,8 @@
 
     <!-- 🌟 主網頁內容 (解鎖後顯示) -->
     <div id="main-app">
-        <div class="header">
+        <!-- 頁頭與 Day 導航 (僅在「行程表」分頁顯示) -->
+        <div class="header" id="scheduleHeader">
             <h1 class="main-title">💜 2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅 💜</h1>
             <div class="day-nav" id="dayNav">
                 <button class="day-btn active" onclick="switchDay(1)">Day 1<br><small>11/18</small></button>
@@ -580,7 +446,7 @@
             </div>
         </div>
 
-        <!-- 1. 行程頁面區塊 -->
+        <!-- 區塊 1: 行程表視圖 (Schedule View) -->
         <div class="container" id="scheduleView">
             <!-- Day 1 -->
             <div id="day1-content" class="day-content">
@@ -671,284 +537,20 @@
                 </div>
             </div>
 
-            <!-- Day 2 -->
+            <!-- Day 2 - Day 5 行程結構保留 -->
             <div id="day2-content" class="day-content hidden">
-                <div class="route-connector" style="padding-top: 0;">
-                    <div class="route-line-box">
-                        <div class="route-dot"></div>
-                        <div class="route-dashed-line"></div>
-                    </div>
-                    <div class="route-text">🚶 步行/搭車 愛河日央 ➔ 午餐餐廳 • 時間待定</div>
-                </div>
-
                 <div class="card">
-                    <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
-                    <div class="time">中午 12:00 - 13:30</div>
-                    <div class="title">🍽️ [午餐] 待定餐廳（點擊修改）</div>
-                    <div class="tags">
-                        <span class="tag food">美食</span>
-                        <span class="tag">未預訂</span>
-                    </div>
-                    <div class="transit-box">
-                        💡 <b>營業時間：</b>待填寫<br>
-                        📝 <b>備註：</b>可填寫想吃的店家或推薦菜色。
-                    </div>
-                </div>
-
-                <div class="route-connector">
-                    <div class="route-line-box">
-                        <div class="route-dashed-line"></div>
-                        <div class="route-dot"></div>
-                        <div class="route-dashed-line"></div>
-                    </div>
-                    <div class="route-text">🚆 捷運 午餐餐廳 ➔ 世運主場館 • 約 25 分鐘</div>
-                </div>
-
-                <div class="card">
-                    <div class="time">13:00 - 15:00</div>
-                    <div class="title">🔥 驗證 / 領 VIP 禮</div>
-                    <div class="tags">
-                        <span class="tag purple">ARIRANG TOUR</span>
-                        <span class="tag">主行程</span>
-                    </div>
-                </div>
-
-                <div class="card" style="margin-top: 12px;">
-                    <div class="time">15:40 - 15:50</div>
-                    <div class="title">🔥 SOUNDCHECK</div>
-                    <div class="tags">
-                        <span class="tag purple">ARIRANG TOUR</span>
-                        <span class="tag">主行程</span>
-                    </div>
-                </div>
-
-                <div class="card" style="margin-top: 12px;">
-                    <div class="time">19:00 - 21:30</div>
+                    <div class="time">Day 2</div>
                     <div class="title">🔥 BTS 演唱會 Day 1（高雄世運主場館）</div>
-                    <div class="tags">
-                        <span class="tag purple">ARIRANG TOUR</span>
-                        <span class="tag">主行程</span>
-                    </div>
-                </div>
-
-                <div class="route-connector">
-                    <div class="route-line-box">
-                        <div class="route-dashed-line"></div>
-                        <div class="route-dot"></div>
-                        <div class="route-dashed-line"></div>
-                    </div>
-                    <div class="route-text">🚆 捷運 世運主場館 ➔ 晚餐餐廳/宵夜 • 約 20 分鐘</div>
-                </div>
-
-                <div class="card">
-                    <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
-                    <div class="time">晚上 22:30 - 23:30</div>
-                    <div class="title">🥣 [晚餐/宵夜] 待定餐廳（點擊修改）</div>
-                    <div class="tags">
-                        <span class="tag food">美食</span>
-                        <span class="tag">宵夜場</span>
-                    </div>
-                    <div class="transit-box">
-                        💡 <b>營業時間：</b>待填寫<br>
-                        📝 <b>備註：</b>演唱會結束後補充體力！
-                    </div>
-                </div>
-
-                <div class="route-connector">
-                    <div class="route-line-box">
-                        <div class="route-dashed-line"></div>
-                        <div class="route-dot"></div>
-                        <div class="route-dashed-line"></div>
-                    </div>
-                    <div class="route-text">🚶 步行 晚餐地點 ➔ 愛河日央 • 約 10 分鐘</div>
-                </div>
-
-                <div class="card">
-                    <div class="time">晚上 23:45</div>
-                    <div class="title">返回 愛河日央 休息 🏨</div>
-                    <div class="tags"><span class="tag">住宿</span></div>
                 </div>
             </div>
+            <div id="day3-content" class="day-content hidden"></div>
+            <div id="day4-content" class="day-content hidden"></div>
+            <div id="day5-content" class="day-content hidden"></div>
+        </div>
 
-            <!-- Day 3 -->
-            <div id="day3-content" class="day-content hidden">
-                <div class="route-connector" style="padding-top: 0;">
-                    <div class="route-line-box">
-                        <div class="route-dot"></div>
-                        <div class="route-dashed-line"></div>
-                    </div>
-                    <div class="route-text">🚗 捷運/計程車 愛河日央 ➔ 碳佐麻里 • 約 20 分鐘</div>
-                </div>
-
-                <div class="card">
-                    <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
-                    <div class="time">中午 12:00 - 14:00</div>
-                    <div class="title">🍽️ [午餐] 碳佐麻里精品燒肉</div>
-                    <div class="tags">
-                        <span class="tag food">美食</span>
-                        <span class="tag">預訂午餐</span>
-                    </div>
-                    <div class="transit-box">
-                        💡 <b>美味推薦：</b>極上和牛燒肉、精品切盤、特色手作甜點與飲品。
-                    </div>
-                </div>
-
-                <div class="route-connector">
-                    <div class="route-line-box">
-                        <div class="route-dashed-line"></div>
-                        <div class="route-dot"></div>
-                        <div class="route-dashed-line"></div>
-                    </div>
-                    <div class="route-text">🚗 捷運/計程車 碳佐麻里 ➔ 下午景點/晚餐 • 時間待定</div>
-                </div>
-
-                <div class="card">
-                    <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
-                    <div class="time">晚上 18:00 - 20:00</div>
-                    <div class="title">🥣 [晚餐] 待定餐廳（點擊修改）</div>
-                    <div class="tags">
-                        <span class="tag food">美食</span>
-                        <span class="tag">未預訂</span>
-                    </div>
-                    <div class="transit-box">
-                        💡 <b>營業時間：</b>待填寫<br>
-                        📝 <b>備註：</b>可填寫想吃的夜市或餐廳。
-                    </div>
-                </div>
-
-                <div class="route-connector">
-                    <div class="route-line-box">
-                        <div class="route-dashed-line"></div>
-                        <div class="route-dot"></div>
-                        <div class="route-dashed-line"></div>
-                    </div>
-                    <div class="route-text">🚗 捷運/計程車 晚餐餐廳 ➔ 愛河日央 • 約 20 分鐘</div>
-                </div>
-
-                <div class="card">
-                    <div class="time">晚上 20:30</div>
-                    <div class="title">返回 愛河日央 休息 🏨</div>
-                    <div class="tags"><span class="tag">住宿</span></div>
-                </div>
-            </div>
-
-            <!-- Day 4 -->
-            <div id="day4-content" class="day-content hidden">
-                <div class="card">
-                    <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
-                    <div class="time">上午 11:30 - 12:00</div>
-                    <div class="title">飯店退房 & 高雄愛河智選假日酒店 Check-in 🏨</div>
-                    <div class="tags"><span class="tag">住宿更換 Day 4</span></div>
-                    <p style="margin: 8px 0 0 0; color: #666; font-size: 14px;">自愛河日央退房，前往「高雄愛河智選假日酒店」辦理入住與寄放行李。</p>
-                </div>
-
-                <div class="route-connector">
-                    <div class="route-line-box">
-                        <div class="route-dashed-line"></div>
-                        <div class="route-dot"></div>
-                        <div class="route-dashed-line"></div>
-                    </div>
-                    <div class="route-text">🚶 步行/搭車 智選假日酒店 ➔ 午餐餐廳 • 時間待定</div>
-                </div>
-
-                <div class="card">
-                    <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
-                    <div class="time">中午 12:00 - 13:30</div>
-                    <div class="title">🍽️ [午餐] 待定餐廳（點擊修改）</div>
-                    <div class="tags">
-                        <span class="tag food">美食</span>
-                        <span class="tag">未預訂</span>
-                    </div>
-                    <div class="transit-box">
-                        💡 <b>營業時間：</b>待填寫<br>
-                        📝 <b>備註：</b>可填寫想吃的店家或周邊小吃。
-                    </div>
-                </div>
-
-                <div class="route-connector">
-                    <div class="route-line-box">
-                        <div class="route-dashed-line"></div>
-                        <div class="route-dot"></div>
-                        <div class="route-dashed-line"></div>
-                    </div>
-                    <div class="route-text">🚆 捷運 午餐餐廳 ➔ 世運主場館 • 約 25 分鐘</div>
-                </div>
-
-                <div class="card">
-                    <div class="time">下午 3:00 - 晚上 10:00</div>
-                    <div class="title">🔥 BTS 演唱會 Day 2（高雄世運主場館）</div>
-                    <div class="tags">
-                        <span class="tag purple">ARIRANG TOUR</span>
-                        <span class="tag">主行程</span>
-                    </div>
-                </div>
-
-                <div class="route-connector">
-                    <div class="route-line-box">
-                        <div class="route-dashed-line"></div>
-                        <div class="route-dot"></div>
-                        <div class="route-dashed-line"></div>
-                    </div>
-                    <div class="route-text">🚆 捷運 世運主場館 ➔ 晚餐餐廳/宵夜 • 約 25 分鐘</div>
-                </div>
-
-                <div class="card">
-                    <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
-                    <div class="time">晚上 22:30 - 23:30</div>
-                    <div class="title">🥣 [晚餐/宵夜] 待定餐廳（點擊修改）</div>
-                    <div class="tags">
-                        <span class="tag food">美食</span>
-                        <span class="tag">宵夜場</span>
-                    </div>
-                    <div class="transit-box">
-                        💡 <b>營業時間：</b>待填寫<br>
-                        📝 <b>備註：</b>演唱會結束後享用晚餐。
-                    </div>
-                </div>
-
-                <div class="route-connector">
-                    <div class="route-line-box">
-                        <div class="route-dashed-line"></div>
-                        <div class="route-dot"></div>
-                        <div class="route-dashed-line"></div>
-                    </div>
-                    <div class="route-text">🚶 步行 晚餐地點 ➔ 高雄愛河智選假日酒店 • 約 10 分鐘</div>
-                </div>
-
-                <div class="card">
-                    <div class="time">晚上 23:45</div>
-                    <div class="title">返回 高雄愛河智選假日酒店 休息 🏨</div>
-                    <div class="tags"><span class="tag">住宿</span></div>
-                </div>
-            </div>
-
-            <!-- Day 5 -->
-            <div id="day5-content" class="day-content hidden">
-                <div class="route-connector" style="padding-top: 0;">
-                    <div class="route-line-box">
-                        <div class="route-dot"></div>
-                        <div class="route-dashed-line"></div>
-                    </div>
-                    <div class="route-text">🚶 步行/搭車 智選假日酒店 ➔ 午餐餐廳 • 時間待定</div>
-                </div>
-
-                <div class="card">
-                    <a href="https://maps.google.com" target="_blank" class="nav-link">🧭 導航</a>
-                    <div class="time">中午 12:00 - 13:30</div>
-                    <div class="title">🍽️ [午餐] 待定餐廳（點擊修改）</div>
-                    <div class="tags">
-                        <span class="tag food">美食</span>
-                        <span class="tag">未預訂</span>
-                    </div>
-                    <div class="transit-box">
-                        💡 <b>營業時間：</b>待填寫<br>
-                        📝 <b>備註：</b>演唱會前先填飽肚子！
-                    </div>
-                </div>
-            </div>
-
-            <!-- 📌 打卡清單範例區塊（只需將打卡卡片放在 .checklist-grid-container 中即可） -->
-            <!-- 💡 在手機上維持直排，在電腦上會自動排列成九宮格（3欄） -->
+        <!-- 區塊 2: 獨立打卡踩點視圖 (Checklist View) -->
+        <div class="container hidden" id="checklistView">
             <div class="section-title">📍 打卡踩點清單</div>
             <div class="checklist-grid-container">
                 <div class="checklist-card" onclick="toggleChecklist(this)">
@@ -957,7 +559,7 @@
                         <div class="checklist-title-box">
                             <div class="checklist-title">世運主場館紫色燈光打卡 📸</div>
                             <div class="checklist-meta">
-                                <span>鹽埕區 / 左營區</span>
+                                <span>左營區</span>
                                 <span class="status-badge active">進行中</span>
                             </div>
                         </div>
@@ -1003,18 +605,17 @@
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>
 
-    <!-- 圖片大圖檢視 Modal (Lightbox) -->
-    <div class="lightbox-overlay" id="lightboxOverlay">
-        <div class="lightbox-content">
-            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-            <button class="lightbox-btn lightbox-prev" onclick="changeLightboxImg(-1)">&#10094;</button>
-            <img class="lightbox-img" id="lightboxImg" src="" alt="預覽大圖">
-            <button class="lightbox-btn lightbox-next" onclick="changeLightboxImg(1)">&#10095;</button>
-        </div>
+        <!-- 📌 底部固定導航列 -->
+        <nav class="bottom-nav">
+            <button class="nav-tab-btn active" id="tabScheduleBtn" onclick="switchMainTab('schedule')">
+                🗓️ 行程表
+            </button>
+            <button class="nav-tab-btn" id="tabChecklistBtn" onclick="switchMainTab('checklist')">
+                📍 打卡踩點
+            </button>
+        </nav>
     </div>
 
     <script>
@@ -1029,7 +630,33 @@
             }
         }
 
-        // 切換天數函式
+        // 切換主要大分頁區塊 (行程表 vs 打卡踩點)
+        function switchMainTab(tab) {
+            const scheduleView = document.getElementById('scheduleView');
+            const checklistView = document.getElementById('checklistView');
+            const scheduleHeader = document.getElementById('scheduleHeader');
+            const tabScheduleBtn = document.getElementById('tabScheduleBtn');
+            const tabChecklistBtn = document.getElementById('tabChecklistBtn');
+
+            if (tab === 'schedule') {
+                scheduleView.classList.remove('hidden');
+                scheduleHeader.classList.remove('hidden');
+                checklistView.classList.add('hidden');
+
+                tabScheduleBtn.classList.add('active');
+                tabChecklistBtn.classList.remove('active');
+            } else {
+                scheduleView.classList.add('hidden');
+                scheduleHeader.classList.add('hidden');
+                checklistView.classList.remove('hidden');
+
+                tabScheduleBtn.classList.remove('active');
+                tabChecklistBtn.classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 切換 Day 1-5 天數
         function switchDay(dayNum) {
             const buttons = document.querySelectorAll('.day-btn');
             buttons.forEach((btn, index) => {
