@@ -1408,6 +1408,37 @@
             }
             window.scrollTo(0, 0); // 切換頁籤時回到頂部
         }
+        
+        // 🌟 自動依照日期推進更新狀態的函式
+        function updateDynamicStatuses() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); // 取當天零時進行比對
+
+            // 尋找所有帶有日期區間的卡片
+            document.querySelectorAll('.dynamic-status-card').forEach(card => {
+                const startDateStr = card.getAttribute('data-start');
+                const endDateStr = card.getAttribute('data-end');
+                const badge = card.querySelector('.status-badge');
+
+                if (!startDateStr || !endDateStr || !badge) return;
+
+                const startDate = new Date(startDateStr);
+                const endDate = new Date(endDateStr);
+                endDate.setHours(23, 59, 59, 999);
+
+                // 判斷並替換狀態
+                if (today < startDate) {
+                    badge.className = "status-badge upcoming";
+                    badge.textContent = "未開始";
+                } else if (today >= startDate && today <= endDate) {
+                    badge.className = "status-badge active";
+                    badge.textContent = "進行中";
+                } else {
+                    badge.className = "status-badge ended";
+                    badge.textContent = "已結束";
+                }
+            });
+        }
 
         // 🚀 快速跳轉至指定的分類區塊
         function scrollToSection(sectionId) {
