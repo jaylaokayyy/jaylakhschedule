@@ -1800,6 +1800,58 @@
             updateFoodFunCount();
         }
 
+        // ✨ 只顯示有「必打卡」標籤的活動，再按一次即可恢復完整清單。
+        var mustVisitFilterActive = false;
+        function toggleMustVisitFilter() {
+            mustVisitFilterActive = !mustVisitFilterActive;
+            var view = document.getElementById('activitiesView');
+            var cards = view.querySelectorAll('.checklist-card');
+            var button = document.getElementById('mustVisitFilterBtn');
+
+            for (var i = 0; i < cards.length; i++) {
+                var isMustVisit = !!cards[i].querySelector('.must-visit-badge');
+                cards[i].style.display = (!mustVisitFilterActive || isMustVisit) ? '' : 'none';
+            }
+
+        // 篩選時同步隱藏沒有必打卡項目的分類標題，避免出現空分類。
+        var sections = view.querySelectorAll('.section-title');
+        for (var j = 0; j < sections.length; j++) {
+            var hasVisibleMustVisit = false;
+            var sibling = sections[j].nextElementSibling;
+            while (sibling && !sibling.classList.contains('section-title')) {
+                if (sibling.classList.contains('checklist-card') && sibling.querySelector('.must-visit-badge')) {
+                    hasVisibleMustVisit = true;
+                    break;
+                }
+                    sibling = sibling.nextElementSibling;
+                }
+                sections[j].style.display = (!mustVisitFilterActive || hasVisibleMustVisit) ? '' : 'none';
+            }
+
+            button.classList.toggle('active', mustVisitFilterActive);
+            button.setAttribute('aria-pressed', mustVisitFilterActive ? 'true' : 'false');
+            button.innerText = mustVisitFilterActive ? '📋 顯示全部' : '✨ 必打卡篩選';
+        }
+
+        function toggleCard(cardElement, event) {
+            if (event.target.tagName === 'INPUT' || event.target.tagName === 'IMG') return;
+            cardElement.classList.toggle('open');
+        }
+
+        function handleCheckboxClick(checkbox, event) {
+            event.stopPropagation();
+            var card = checkbox.closest('.checklist-card');
+            if (checkbox.checked) {
+                card.classList.add('completed');
+                card.classList.remove('open');
+            } else {
+                card.classList.remove('completed');
+                card.classList.add('open');
+            }
+            updateActivityCount();
+            updateFoodFunCount();
+        }
+
         function updateStatuses() {
             // 使用台灣／瀏覽器本地日曆日期比較，避免 new Date('YYYY-MM-DD') 的 UTC 時區偏差。
             var today = new Date();
