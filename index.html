@@ -335,6 +335,7 @@
         }
 
         .checklist-title {
+            display: inline;
             font-size: 15px;
             font-weight: bold;
             color: #333;
@@ -544,6 +545,36 @@
         }
         .back-to-top.visible { display: flex; align-items: center; gap: 5px; }
         .back-to-top:active { transform: scale(0.96); }
+
+        /* ✨ 必打卡重點標示 */
+        .must-visit-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 9px;
+            padding: 4px 9px;
+            border: 1px solid rgba(255, 220, 92, 0.95);
+            border-radius: 999px;
+            background: linear-gradient(135deg, #fff8bd 0%, #ffd84d 48%, #ffb800 100%);
+            color: #704600;
+            font-size: 11px;
+            line-height: 1.35;
+            font-weight: 800;
+            white-space: nowrap;
+            vertical-align: middle;
+            box-shadow: 0 0 6px rgba(255, 204, 0, .75), 0 0 13px rgba(255, 190, 0, .48);
+            animation: mustVisitGlow 1.7s ease-in-out infinite;
+        }
+        @keyframes mustVisitGlow {
+            0%, 100% { box-shadow: 0 0 5px rgba(255, 204, 0, .58), 0 0 10px rgba(255, 190, 0, .32); filter: brightness(1); }
+            50% { box-shadow: 0 0 9px rgba(255, 214, 55, .95), 0 0 19px rgba(255, 190, 0, .72); filter: brightness(1.08); }
+        }
+        @media (max-width: 600px) {
+            .must-visit-badge { margin-left: 6px; padding: 3px 7px; font-size: 10px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .must-visit-badge { animation: none; }
+        }
     </style>
 </head>
 <body class="schedule-locked">
@@ -1026,10 +1057,8 @@
             <!-- 🚀 活動打卡快速跳轉按鈕 -->
             <div class="quick-nav">
                 <button class="quick-nav-btn" onclick="scrollToSection('act-sec-1')">📍 世運周邊</button>
-                <button class="quick-nav-btn" onclick="scrollToSection('act-sec-2')">📍 洲際周邊</button>
-                <button class="quick-nav-btn" onclick="scrollToSection('act-sec-3')">📍 巨蛋周邊</button>
-                <button class="quick-nav-btn" onclick="scrollToSection('act-sec-4')">📍 其他地點</button>
-                <button class="quick-nav-btn" onclick="scrollToSection('act-sec-5')">📍 鹽埕區</button>
+                <button class="quick-nav-btn" onclick="scrollToSection('act-sec-2')">🌇 城市應援</button>
+                <button class="quick-nav-btn" onclick="scrollToSection('act-sec-3')">☕ 應援咖啡廳</button>
             </div>
 
             <!-- 分類一：世運周邊應援打卡點 -->
@@ -1130,6 +1159,7 @@
                     <input type="checkbox" onclick="handleCheckboxClick(this, event)">
                     <div class="checklist-title-box">
                         <div class="checklist-title">閔運氣捷運站看板</div>
+                        <span class="must-visit-badge">✨ 必打卡</span>
                         <div class="checklist-meta">
                             <span>🚌 捷運廣告</span>
                             <span class="status-badge">計算中...</span>
@@ -1172,7 +1202,7 @@
                     <div class="checklist-title-box">
                         <div class="checklist-title">智旻公車站廣告</div>
                         <div class="checklist-meta">
-                            <span>🚌 公車看板廣告</span>
+                            <span>🚌 燈箱廣告</span>
                             <span class="status-badge">計算中...</span>
                         </div>
                     </div>
@@ -1195,7 +1225,7 @@
                     <div class="checklist-title-box">
                         <div class="checklist-title">智旻公車站廣告</div>
                         <div class="checklist-meta">
-                            <span>🚌 公車看板廣告</span>
+                            <span>🚌 燈箱廣告</span>
                             <span class="status-badge">計算中...</span>
                         </div>
                     </div>
@@ -1217,7 +1247,7 @@
                     <div class="checklist-title-box">
                         <div class="checklist-title">柾國公車站廣告</div>
                         <div class="checklist-meta">
-                            <span>🚌 公車看板廣告</span>
+                            <span>🚌 燈箱廣告</span>
                             <span class="status-badge">計算中...</span>
                         </div>
                     </div>
@@ -1240,7 +1270,7 @@
                     <div class="checklist-title-box">
                         <div class="checklist-title">柾泰公車站廣告</div>
                         <div class="checklist-meta">
-                            <span>🚌 公車看板廣告</span>
+                            <span>🚌 燈箱廣告</span>
                             <span class="status-badge">計算中...</span>
                         </div>
                     </div>
