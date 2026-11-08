@@ -38,11 +38,9 @@
 
         /* 🔒 密碼登入畫面樣式 */
         #login-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+            position: relative;
             width: 100%;
-            height: 100vh;
+            min-height: calc(100vh - 150px);
             background-color: #121113;
             display: flex;
             justify-content: center;
@@ -112,9 +110,14 @@
             display: none;
         }
 
-        /* 預設隱藏主應用 */
+        /* 主介面預設顯示；只有行程規劃頁需要密碼 */
         #main-app {
-            display: none;
+            display: block;
+        }
+
+        /* 密碼只覆蓋行程頁，不影響底部其他兩個選單 */
+        body.schedule-locked #scheduleView .day-content {
+            display: none !important;
         }
 
         .header {
@@ -523,24 +526,13 @@
         .hidden { display: none !important; }
     </style>
 </head>
-<body>
-
-    <!-- 🔒 密碼驗證覆蓋層 -->
-    <div id="login-overlay">
-        <div class="login-box">
-            <h2>🔒 專屬行程保護</h2>
-            <p>請輸入密碼以查看高雄場行程與活動</p>
-            <input type="password" id="passwordInput" placeholder="請輸入密碼" onkeydown="if(event.key==='Enter') verifyPassword()">
-            <button onclick="verifyPassword()">解鎖行程表</button>
-            <div id="error-msg">密碼錯誤，請重新輸入！</div>
-        </div>
-    </div>
+<body class="schedule-locked">
 
     <!-- 🌟 主網頁內容 (解鎖後顯示) -->
     <div id="main-app">
         <div class="header">
             <h1 class="main-title">💜 2026NOV18-22 BTS ARIRANG WORLD TOUR KAOHSIUNG之旅 💜</h1>
-            <div class="day-nav" id="dayNav">
+            <div class="day-nav hidden" id="dayNav">
                 <button class="day-btn active" onclick="switchDay(1)">Day 1<br><small>11/18</small></button>
                 <button class="day-btn" onclick="switchDay(2)">Day 2<br><small>11/19</small></button>
                 <button class="day-btn" onclick="switchDay(3)">Day 3<br><small>11/20</small></button>
@@ -551,6 +543,16 @@
 
         <!-- 1. 行程頁面區塊 -->
         <div class="container" id="scheduleView">
+            <!-- 🔒 僅鎖定「行程規劃」頁面 -->
+            <div id="login-overlay">
+                <div class="login-box">
+                    <h2>🔒 專屬行程保護</h2>
+                    <p>請輸入密碼以查看高雄場行程規劃</p>
+                    <input type="password" id="passwordInput" placeholder="請輸入密碼" onkeydown="if(event.key==='Enter') verifyPassword()">
+                    <button onclick="verifyPassword()">解鎖行程表</button>
+                    <div id="error-msg">密碼錯誤，請重新輸入！</div>
+                </div>
+            </div>
             <!-- Day 1 -->
             <div id="day1-content" class="day-content">
                 <div class="card">
@@ -1438,7 +1440,8 @@
             var inputVal = document.getElementById('passwordInput').value;
             if (inputVal === 'jjjj') {
                 document.getElementById('login-overlay').style.display = 'none';
-                document.getElementById('main-app').style.display = 'block';
+                document.body.classList.remove('schedule-locked');
+                document.getElementById('dayNav').classList.remove('hidden');
                 initApp();
             } else {
                 var err = document.getElementById('error-msg');
